@@ -227,7 +227,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function hello(thing)&#123;</span><br><span class="line">    console.log(&quot;Hello&quot; + thing);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">hello(&quot;world&quot;)</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;等同于</span><br><span class="line">hello.call(window,&quot;world&quot;);</span><br></pre></td></tr></table></figure>
 
 <h3 id="2-2-显示调用"><a href="#2-2-显示调用" class="headerlink" title="2.2 显示调用"></a>2.2 显示调用</h3><h4 id="2-2-1-new操作符"><a href="#2-2-1-new操作符" class="headerlink" title="2.2.1 new操作符"></a>2.2.1 <code>new</code>操作符</h4><p>如果是<code>new</code>绑定，并且构造函数中没有返回function或者是object,那么this指向这个新对象。</p>
-<h4 id="2-2-2-call、apply、bind调用"><a href="#2-2-2-call、apply、bind调用" class="headerlink" title="2.2.2 call、apply、bind调用"></a>2.2.2 <code>call</code>、<code>apply</code>、<code>bind</code>调用</h4><p>通过这三个方法调用，则<code>this</code>ba<br>绑定的就是指定的对象</p>
+<h4 id="2-2-2-call、apply、bind调用"><a href="#2-2-2-call、apply、bind调用" class="headerlink" title="2.2.2 call、apply、bind调用"></a>2.2.2 <code>call</code>、<code>apply</code>、<code>bind</code>调用</h4><p>通过这三个方法调用，则<code>this</code><br>绑定的就是指定的对象</p>
 <ul>
 <li><code>apply</code>使用参数数组（或类数组）</li>
 <li><code>call</code>使用参数列表</li>
