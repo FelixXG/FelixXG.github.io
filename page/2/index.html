@@ -188,23 +188,6 @@
         </h1>
 
         <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/vue/" itemprop="url" rel="index">
-                    <span itemprop="name">vue</span>
-                  </a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/vue/%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8E%9F%E7%90%86/" itemprop="url" rel="index">
-                    <span itemprop="name">响应式原理</span>
-                  </a>
-                </span>
-            </span>
 
           
 
@@ -217,7 +200,13 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><ul>
+          <hr>
+<p>title: mvvm探究<br>type: categories<br>categories:</p>
+<ul>
+<li>[Vue,响应式原理]</li>
+</ul>
+<hr>
+<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><ul>
 <li>实现一个数据监听器<code>Observer</code>,能够对数据对象的所有的属性进行监听，如有变动可拿到最新值并通知订阅者。</li>
 <li>实现一个指令解析器<code>Compile</code>，对每个元素节点的指令进行扫描和解析，根据指令模板替换数据，以及绑定相应的更新函数。</li>
 <li>实现一个Watcher，作为连接<code>Observer</code>和<code>Compile</code>的桥梁，能够订阅并收到每个属性变动的通知，执行指令绑定的相应回调函数，从而更新视图。</li>
@@ -1074,7 +1063,7 @@
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-count">18</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
   </nav>
