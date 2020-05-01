@@ -170,6 +170,326 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/01/%E8%A3%85%E9%A5%B0%E5%99%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Luzy">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Luzy's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/05/01/%E8%A3%85%E9%A5%B0%E5%99%A8/" class="post-title-link" itemprop="url">装饰器</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/React/" itemprop="url" rel="index">
+                    <span itemprop="name">React</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="什么是装饰器"><a href="#什么是装饰器" class="headerlink" title="什么是装饰器"></a>什么是装饰器</h3><p>装饰器是一个对类进行处理的函数。装饰器函数的第一个参数，就是所要装饰的目标类。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">@decorator</span><br><span class="line">class A &#123;&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;等同于</span><br><span class="line">class A &#123;&#125;</span><br><span class="line">A &#x3D; decorator(A) || A;</span><br></pre></td></tr></table></figure>
+
+<h3 id="使用案例"><a href="#使用案例" class="headerlink" title="使用案例"></a>使用案例</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;src&#x2F;decorators&#x2F;CursorPointer.js</span><br><span class="line">import React from &#39;react&#39;</span><br><span class="line"></span><br><span class="line">export default Component &#x3D;&gt; class extends React.Component &#123;</span><br><span class="line">    render() &#123;</span><br><span class="line">        return &lt;div style&#x3D;&#123;&#123;cursor:&#39;pointer&#39;,display:&#39;inline-block&#39;&#125;&#125;&gt;</span><br><span class="line">            &lt;Component&gt;</span><br><span class="line">        &lt;&#x2F;div&gt;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这个装饰器（高阶组件）接受一个React组件作为参数，然后返回一个新的React组件。实现比较简单，包裹一个div,添加了一个style,就这么简单。以后所有被它装饰的组件都会具有这个特征</p>
+<p>使用这个装饰器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">import React from &#39;react&#39;</span><br><span class="line">import Clickable from &#39;..&#x2F;decorators&#x2F;CursorPointer&#39;</span><br><span class="line"></span><br><span class="line">@Clickable</span><br><span class="line">class ClickablePanel extends React.Component &#123;</span><br><span class="line">    render()&#123;</span><br><span class="line">        return &lt;div className&#x3D;&quot;panel&quot;&gt;</span><br><span class="line">        </span><br><span class="line">        &lt;&#x2F;div&gt;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;定义一个函数，也就是定义一个Decorator，target参数就是传进来的Class。</span><br><span class="line">&#x2F;&#x2F;这里是为类添加了一个静态属性</span><br><span class="line">function testable(target) &#123;</span><br><span class="line">  target.isTestable &#x3D; true;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;在Decorator后面跟着Class，Decorator是函数的话，怎么不是testable(MyTestableClass)这样写呢？</span><br><span class="line">&#x2F;&#x2F;我只能这样理解：因为语法就这样，只要Decorator后面是Class，默认就已经把Class当成参数隐形传进Decorator了。</span><br><span class="line">@testable</span><br><span class="line">class MyTestableClass &#123;&#125;</span><br><span class="line"></span><br><span class="line">console.log(MyTestableClass.isTestable) &#x2F;&#x2F; true</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/01/Context/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Luzy">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Luzy's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/05/01/Context/" class="post-title-link" itemprop="url">Context</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/React/" itemprop="url" rel="index">
+                    <span itemprop="name">React</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="context是什么"><a href="#context是什么" class="headerlink" title="context是什么"></a><code>context</code>是什么</h3><p><code>context</code>提供了一种通过组件树传递数据的方法，无需每个级别手动传递props属性即全局共享数据</p>
+<h3 id="何时使用"><a href="#何时使用" class="headerlink" title="何时使用"></a>何时使用</h3><p>以主题色<code>theme</code>为例</p>
+<h4 id="不使用context时"><a href="#不使用context时" class="headerlink" title="不使用context时"></a>不使用<code>context</code>时</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">class App extends React.Component &#123;</span><br><span class="line">    render()&#123;</span><br><span class="line">        return &lt;Toolbar theme&#x3D;&quot;dark&quot; &#x2F;&gt;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function Toolbar(props)&#123;</span><br><span class="line">    return (</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">            &lt;ThemeButton theme&#x3D;&#123;props.theme&#125; &#x2F;&gt;</span><br><span class="line">        &lt;&#x2F;div&gt;</span><br><span class="line">    )</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class ThemeButton extends React.Component &#123;</span><br><span class="line">    render()&#123;</span><br><span class="line">        return &lt;Button theme&#x3D;&#123;this.props.theme&#125;&#x2F;&gt;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="使用context时"><a href="#使用context时" class="headerlink" title="使用context时"></a>使用<code>context</code>时</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;为当前theme创建一个context（&#39;light&#39;为默认值）</span><br><span class="line">const ThemeContext &#x3D; React.createContext(&#39;light&#39;);</span><br><span class="line">class App extends React.component &#123;</span><br><span class="line">    render()&#123;</span><br><span class="line">        &#x2F;&#x2F;使用一个Provider来将当前的theme传递给以下组件树</span><br><span class="line">        &#x2F;&#x2F;无论多深，任何组件都能读取这个值</span><br><span class="line">        return (</span><br><span class="line">            &lt;ThemeContext.Provider value&#x3D;&quot;dark&quot;&gt;</span><br><span class="line">                &lt;Toolbar &#x2F;&gt;</span><br><span class="line">            &lt;&#x2F;ThemeContext.Provider&gt;</span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function ToolBar()&#123;</span><br><span class="line">    return (</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">            &lt;ThemeButton &#x2F;&gt;</span><br><span class="line">        &lt;&#x2F;div&gt;</span><br><span class="line">    )</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class ThemeButton extends React.Component&#123;</span><br><span class="line">    &#x2F;&#x2F;挂载在class上的&#96;contextType&#96;属性会被重赋值为一个由React.createContext()创建的Context对象。</span><br><span class="line">    &#x2F;&#x2F;这样就能使用this.context来消费最近Context上的那个值</span><br><span class="line">    static contextType &#x3D; ThemeContext;</span><br><span class="line">    render()&#123;</span><br><span class="line">        return &lt;Button theme&#x3D;&#123;this.context&#125; &#x2F;&gt;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/01/Immutable/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Luzy">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Luzy's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/05/01/Immutable/" class="post-title-link" itemprop="url">Immutable</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/React/" itemprop="url" rel="index">
+                    <span itemprop="name">React</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><code>ImmutableJS</code>最大的两个特点：</p>
+<ul>
+<li><p><code>immutable data structures</code>（持久性数据结构）</p>
+<p>  保证了数据一旦创建就不能修改，使用旧数据创建新数据时，旧数据不会改变</p>
+</li>
+<li><p><code>structural sharing</code>(结构共享)</p>
+<p>  是指没有改变的数据共有一个引用，这样既减少了深拷贝的性能消耗，也减少了内存</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">import &#123; Map &#125; from &#39;immutable&#39;</span><br><span class="line">const person &#x3D; Map();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">const personWithAge &#x3D; person.set(&#39;age&#39;, 20)</span><br><span class="line"></span><br><span class="line">console.log(person.toJS()) &#x2F;&#x2F; &#123;&#125;</span><br><span class="line">console.log(personWithAge.toJS()) &#x2F;&#x2F;&#123; age:20&#125;</span><br></pre></td></tr></table></figure>
+<p>也就是说，在Immutabejs的数据结构中，当你想更改某个对象属性时，你得到的永远是一个新的对象，而原对象永远也不会发生更改。</p>
+<h3 id="Immutable常用类型"><a href="#Immutable常用类型" class="headerlink" title="Immutable常用类型"></a>Immutable常用类型</h3><p>1、<code>List</code> 类似JS的Array<br>2、<code>Map</code>类似JS的Object</p>
+<h3 id="Immutable常用API"><a href="#Immutable常用API" class="headerlink" title="Immutable常用API"></a>Immutable常用API</h3><ul>
+<li><p><code>fromJS(value,convert)</code></br><br>简介：value是要转变的数据，converter是要做的操作。第二个参数可不填，默认情况会将数组准换为List类型，将对象转换为Map类型，其余不做操作。</p>
+</li>
+<li><p><code>toJS()</code></br><br>将一个Immutable数据转换为JS类型的数据</p>
+</li>
+</ul>
+<ul>
+<li><code>merge</code></br><br>浅合并,新数据与旧数据对比，旧数据中不存在的属性直接添加，旧数据已存在的属性用新数据覆盖</li>
+</ul>
+<p><a href="https://github.com/camsong/blog/issues/3">参考链接</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/01/React%E5%85%B3%E9%94%AE%E7%82%B9%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Luzy">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Luzy's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/05/01/React%E5%85%B3%E9%94%AE%E7%82%B9%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">React关键点总结</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/React/" itemprop="url" rel="index">
+                    <span itemprop="name">React</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p> 一般React技术栈的项目主要用到几个相关的库，这里总结一下。</p>
+<h3 id="React"><a href="#React" class="headerlink" title="React"></a>React</h3><ul>
+<li>界面都是由一个个组件拼接而成的组件</li>
+<li>JSX语法书写组件</li>
+<li>组件的更新依赖于<code>setState</code>方法</li>
+</ul>
+<h3 id="Redux"><a href="#Redux" class="headerlink" title="Redux"></a>Redux</h3><p>面对复杂系统，一个组件内部状态的改变可能引起其它某个组件甚至多个组件的改变，需要用Redux将state管理起来，方便维护。</p>
+<h4 id="核心概念"><a href="#核心概念" class="headerlink" title="核心概念"></a>核心概念</h4><ul>
+<li>Action</li>
+<li>Reducer</li>
+<li>Store</li>
+</ul>
+<h4 id="工作流（数据流）"><a href="#工作流（数据流）" class="headerlink" title="工作流（数据流）"></a>工作流（数据流）</h4><p>通过调用<code>store.dispatch</code>派发一个<code>action</code>，从而触发<code>reducer</code>，继而改变整个状态树(state tree)。整个<br>流程是单向数据流。</p>
+<h4 id="注意点"><a href="#注意点" class="headerlink" title="注意点"></a>注意点</h4><p>在<code>Reducer</code>中需要小心，不要修改<code>State</code>，使用比较hack的方法是<code>Object.assign()</code>返回一个副本，也可以结合<code>Immutable</code>来处理。</p>
+<ul>
+<li><code>Redux</code>的<code>combineReducers</code>方法是浅比较它调用的<code>reducer</code>的引用是否发生变化</li>
+<li><code>react-redux</code>的<code>connect</code>方法生成的组件（容器组件）也是通过浅比较根state的引用变化与<code>mapStateToProps</code>函数的返回值，来判断是否更新组件。<ul>
+<li>浅比较</br><br> 只检查两个不同变量是否为同一个对象引用</li>
+<li>深比较</br><br>  必须检查两个对象所有属性的值是否相等</li>
+</ul>
+</li>
+</ul>
+<h3 id="react-redux"><a href="#react-redux" class="headerlink" title="react-redux"></a>react-redux</h3><p>本来React和Redux本身是没有什么关系的，通过<code>react-redux</code>将二者联系起来</p>
+<h4 id="核心API"><a href="#核心API" class="headerlink" title="核心API"></a>核心API</h4><ul>
+<li><p>Provider</br><br>提供<code>store</code>给<code>connect</code>使用</p>
+</li>
+<li><p><code>connect([mapStateToProps],[mapDispatchToProps],[megeProps],[options])</code></br><br>连接React组件与Redux store</br><br>连接操作不会改变原来的组件类</br><br>反而返回一个新的已与<code>Redux store</code>连接的组件类</p>
+</li>
+</ul>
+<h4 id="connect-mapStateToProps-mapDispatchToProps-megeProps-options"><a href="#connect-mapStateToProps-mapDispatchToProps-megeProps-options" class="headerlink" title="connect([mapStateToProps],[mapDispatchToProps],[megeProps],[options])"></a><code>connect([mapStateToProps],[mapDispatchToProps],[megeProps],[options])</code></h4><ul>
+<li><p>mapStateToProps</br><br>建立state对象到组件props对象的映射关系</p>
+</li>
+<li><p>mapDispatchToProps</br><br>将dispatch(actionCreator)映射到props对象</p>
+</li>
+</ul>
+<p>这样就不用手动调用<code>setState</code>更新组件状态了，<code>react-redux</code>帮助我们更新组件且性能更优</p>
+<h3 id="Middleware"><a href="#Middleware" class="headerlink" title="Middleware:"></a><code>Middleware</code>:</h3><ul>
+<li>主要用来包装<code>store</code>的<code>dispatch</code>方法（即自定义了一个dispatch）</li>
+<li>每个<code>middleware</code>接收<code>store</code>的<code>dispatch</code>和<code>getState</code>返回的是一个函数</li>
+<li>这个函数的参数是下一个<code>middleware</code>的<code>dispatch</code>,称为<code>next</code></li>
+<li>中间件完整的函数是:</br><br><code>store =&gt; next =&gt; action</code></li>
+<li>通过<code>applyMiddle</code>方法，将这些中间件(middleware)串联起来，原始的<code>dispatch</code>方法会最后执行。</li>
+<li>中间件的整体工作流程是属于洋葱模型</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/09/this%E7%90%86%E8%A7%A3/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -712,441 +1032,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/19/mvvm%E6%8E%A2%E7%A9%B6/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Luzy">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Luzy's Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/02/19/mvvm%E6%8E%A2%E7%A9%B6/" class="post-title-link" itemprop="url">mvvm探究</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/vue/" itemprop="url" rel="index">
-                    <span itemprop="name">vue</span>
-                  </a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/vue/%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8E%9F%E7%90%86/" itemprop="url" rel="index">
-                    <span itemprop="name">响应式原理</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><ul>
-<li>实现一个数据监听器<code>Observer</code>,能够对数据对象的所有的属性进行监听，如有变动可拿到最新值并通知订阅者。</li>
-<li>实现一个指令解析器<code>Compile</code>，对每个元素节点的指令进行扫描和解析，根据指令模板替换数据，以及绑定相应的更新函数。</li>
-<li>实现一个Watcher，作为连接<code>Observer</code>和<code>Compile</code>的桥梁，能够订阅并收到每个属性变动的通知，执行指令绑定的相应回调函数，从而更新视图。</li>
-</ul>
-<h3 id="实现Observer"><a href="#实现Observer" class="headerlink" title="实现Observer"></a>实现Observer</h3><ul>
-<li>作用：给对象的属性添加getter和setter,用于依赖收集和派发更新</li>
-</ul>
-<p>利用<code>Object.defineProperty()</code>来监听属性变动那么将需要observer的数据对象进行递归遍历，包括子属性对象的属性，都加上<code>setter</code>和<code>getter</code>这样的话，给这个对象的某个赋值，就会触发<code>setter</code>，那么就能监听到了数据变化。代码如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">var data &#x3D; &#123;name:&#39;kindeng&#39;&#125;;</span><br><span class="line">observer(data);</span><br><span class="line">data.name &#x3D; &#39;dmp&#39;;&#x2F;&#x2F;监听到值变化了 kindeng ---&gt; dmq</span><br><span class="line"></span><br><span class="line">function observer(data)&#123;</span><br><span class="line">    if(!data || typeof data !&#x3D;&#x3D; &#39;object&#39;)&#123;</span><br><span class="line">        return;</span><br><span class="line">    &#125;</span><br><span class="line">    Object.keys(data).forEach(functioin(key)&#123;</span><br><span class="line">        defineReactive(data,key,data[key]);</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">function defineReactive(data,key,val)&#123;</span><br><span class="line">    observe(val); &#x2F;&#x2F;监听子属性</span><br><span class="line">    Object.defineProperty(data,key,&#123;</span><br><span class="line">        enumerable:true,&#x2F;&#x2F;可枚举</span><br><span class="line">        configurable:false,&#x2F;&#x2F;不能再define</span><br><span class="line">        get:function()&#123;</span><br><span class="line">            return val;</span><br><span class="line">        &#125;,</span><br><span class="line">        set:function(newVal)&#123;</span><br><span class="line">            console.log(&#39;监听到值变化了&#39;,val,&#39;----&gt;&#39;,newValue);</span><br><span class="line">            val &#x3D; newVal;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这样我们已经可以监听每个数据的变化了，那么监听到变化之后就是怎么通知订阅者了，所以接下来需要实现一个消息订阅器，很简单，维护一个数组，用来收集订阅者，数据变动触发notify,再调用订阅者的update方法，代码改善之后如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;...省略</span><br><span class="line">function defineReactive(data,key,val)&#123;</span><br><span class="line">    var dep &#x3D; new Dep();</span><br><span class="line">    observal(val);&#x2F;&#x2F;监听子属性</span><br><span class="line">    </span><br><span class="line">    Object.defineProperty(data,key,&#123;</span><br><span class="line">        &#x2F;&#x2F; ...省略</span><br><span class="line">        set:function(newVal)&#123;</span><br><span class="line">            if(val &#x3D;&#x3D;&#x3D; newVal) return;</span><br><span class="line">            console.log(&#39;监听到值变化了&#39;,val,&#39;----&gt;&#39;,newVal);</span><br><span class="line">            val &#x3D; newVal;</span><br><span class="line">            dep.notify();&#x2F;&#x2F;通知所有订阅者</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function Dep()&#123;</span><br><span class="line">    this.subs &#x3D; [];</span><br><span class="line">&#125;</span><br><span class="line">Dep.prototype &#x3D; &#123;</span><br><span class="line">    addSub:function(sub)&#123;</span><br><span class="line">        this.subs.push(sub);</span><br><span class="line">    &#125;,</span><br><span class="line">    notify:function()&#123;</span><br><span class="line">        this.subs.forEach(function(dub)&#123;</span><br><span class="line">            sub.update();</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>之前我们已经明确了<code>Watcher</code>是订阅者，而且<code>var dep = new Dep()</code>;是在<code>defineReactive</code>方法内部定义的，所以想通过<code>dep</code>添加订阅者，就必须要在闭包内操作，所以我们可以在<code>getter</code>里面动手脚：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;Observer.js</span><br><span class="line">&#x2F;&#x2F;...省略</span><br><span class="line">Object.defineProperty(data,key,&#123;</span><br><span class="line">    get:function()&#123;</span><br><span class="line">        &#x2F;&#x2F;由于需要在闭包内添加Watcher，所以通过Dep定义一个全局target属性，暂存watcher,添加完移除</span><br><span class="line">        Dep.target &amp;&amp; dep.addDep(Dep.target);</span><br><span class="line">        return val;</span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;&#x2F; ...省略</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; Watcher.js</span><br><span class="line">Watcher.prototype &#x3D; &#123;</span><br><span class="line">    get:function(key)&#123;</span><br><span class="line">        Dep.target &#x3D; this;</span><br><span class="line">        this.value &#x3D; data[key];&#x2F;&#x2F;这里会触发属性的getter,从而添加订阅者</span><br><span class="line">        Dep.target &#x3D; null;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="Dep"><a href="#Dep" class="headerlink" title="Dep"></a>Dep</h3><p><code>Dep</code>是一个Class,它定义了一些属性和方法，这里需要特别注意的是它有一个静态属性<code>target</code>,这是一个全局唯一<code>Watcher</code>,这是一个非常巧妙的设计，<strong>因为在同一时间只能有一个全局的Watcher</strong></p>
-<p><code>Dep</code>实际上就是对<code>Watcher</code>的一种管理</p>
-<h3 id="实现Compile"><a href="#实现Compile" class="headerlink" title="实现Compile"></a>实现Compile</h3><p>compile主要做的事情是解析模板指令，将模板中的变量替换成数据，然后初始化渲染页面视图，并将每个指令对应的节点绑定更新函数，添加监听数据的订阅者，一旦数据有变动，收到通知，更新视图。</p>
-<p>因为遍历解析的过程有多次操作dom节点，为提高性能和效率，会先将vue实例根节点的<code>el</code>转换成文档碎片<code>fragment</code>进行解析编译操作，解析完成，再将<code>fragment</code>添加回原来的真实dom节点中。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">function Compile(el)&#123;</span><br><span class="line">    this.$el &#x3D; this.isElementNode(el)?el:documennt.querySelector(el);</span><br><span class="line">    if(this.$el)&#123;</span><br><span class="line">        this.$fragment &#x3D; this.node2Fragment(this.$el);</span><br><span class="line">        this.init();</span><br><span class="line">        this.$el.appendChild(this.$fragment);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Compile.prototype &#x3D; &#123;</span><br><span class="line">    init:function()&#123;this.compileElement(this.$fragment);&#125;,</span><br><span class="line">    node2Fragment:function(el)&#123;</span><br><span class="line">        var fragment &#x3D; document.createDocumentFragment(),child;</span><br><span class="line">        &#x2F;&#x2F;将原生节点拷贝到fragment</span><br><span class="line">        while(child &#x3D; el.firstChild)&#123;</span><br><span class="line">            fragment.appendChild(child)</span><br><span class="line">        &#125;</span><br><span class="line">        return fragment</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>compileElement方法将遍历所有节点及其子节点，进行扫描解析编译，调用对应的指令渲染函数进行数据渲染，并调用对应的指令更新函数进行绑定</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line">Compile.prototype &#x3D; &#123;</span><br><span class="line">    &#x2F;&#x2F;...省略</span><br><span class="line">    compileElement:function(el)&#123;</span><br><span class="line">        var childNodes &#x3D; el.childNodes, me &#x3D; this;</span><br><span class="line">        [].slice.call(childNodes).forEach(function(node)&#123;</span><br><span class="line">            var text &#x3D; node.textContent;</span><br><span class="line">            var reg &#x3D; &#x2F;\&#123;\&#123;(.*)\&#125;\&#125;&#x2F;;&#x2F;&#x2F;表达式文本</span><br><span class="line">            &#x2F;&#x2F; 按元素节点方式编译</span><br><span class="line">            if(me.isElementNode(node))&#123;</span><br><span class="line">                me.compile(node);</span><br><span class="line">            &#125;else if(me.isTextNode(node) &amp;&amp; reg.test(text))&#123;</span><br><span class="line">                me.compileText(node,RegExp.$1);</span><br><span class="line">            &#125;</span><br><span class="line">            &#x2F;&#x2F;遍历编译子节点</span><br><span class="line">            if(node.childNodes &amp;&amp; node.childNodes.length)&#123;</span><br><span class="line">                me.compileElement(node);</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;,</span><br><span class="line">    </span><br><span class="line">    compile:function(node)&#123;</span><br><span class="line">        var nodeAttrs &#x3D; node.attributes, me &#x3D; this;</span><br><span class="line">        [].slice.call(nodeAttrs).forEach(function(attr)&#123;</span><br><span class="line">            &#x2F;&#x2F;规定：指令以 v-xxx 命令</span><br><span class="line">            &#x2F;&#x2F; 如&lt;span v-text&#x3D;&quot;content&quot;&gt;&lt;&#x2F;span&gt;中指令为v-text</span><br><span class="line">            var attrName &#x3D; attr.name; &#x2F;&#x2F;v-text</span><br><span class="line">        if(me.isDirective(attrName))&#123;</span><br><span class="line">            var exp &#x3D; attr.value;&#x2F;&#x2F;content</span><br><span class="line">            var dir &#x3D; attrName.substring(2);&#x2F;&#x2F;text</span><br><span class="line">            if(me.isEventDirective(dir))&#123;</span><br><span class="line">                &#x2F;&#x2F;事件指令，如 v-on:click</span><br><span class="line">                compileUtil.eventHandler(node,me.$vm,exp,dir);</span><br><span class="line">            &#125;else&#123;</span><br><span class="line">                &#x2F;&#x2F; 普通指令</span><br><span class="line">                compileUtil[dir] &amp;&amp; compileUtil[dir](node,me.$vm,exp);</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;指令处理集合</span><br><span class="line">var compileUtil &#x3D; &#123;</span><br><span class="line">    text:function(node,vm,exp)&#123;</span><br><span class="line">        this.bind(node,vm,exp,&#39;text&#39;);</span><br><span class="line">    &#125;,</span><br><span class="line">    &#x2F;&#x2F;...省略</span><br><span class="line">    bind:function(node,vm,exp,dir)&#123;</span><br><span class="line">        var updateFn &#x3D; update[dir + &#39;Updater&#39;];</span><br><span class="line">        &#x2F;&#x2F;第一次初始化视图</span><br><span class="line">        updateFn &amp;&amp; updateFn(node,vm[exp]);</span><br><span class="line">        &#x2F;&#x2F; 实例化订阅者，此操作会在对应的属性消息订阅器中添加了该订阅者Watcher</span><br><span class="line">        new Watcher(vm,exp,function(value,oldValue)&#123;</span><br><span class="line">            &#x2F;&#x2F;一旦属性值有变化，会收到通知执行此更新函数，更新视图</span><br><span class="line">            updaterFn &amp;&amp; updateFn(node,value,oldValue);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;更新函数</span><br><span class="line">var updater &#x3D; &#123;</span><br><span class="line">    textUpdater: function(node,value)&#123;</span><br><span class="line">        node.textConntent &#x3D; typeof value &#x3D;&#x3D;&#x3D; &#39;undefined&#39;?&#39;&#39;:value;</span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;&#x2F;...省略</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>这里通过递归遍历保证了每个节点及子节点都会解析编译到，包括了{{ }}表达式声明的文本节点。监听数据、绑定更新函数的处理是在<code>compileUtil.bind()</code>这个方法中，通过<code>new Watcher()</code>添加回调来接收数据变化的通知。</p>
-<h3 id="实现Watcher"><a href="#实现Watcher" class="headerlink" title="实现Watcher"></a>实现Watcher</h3><p>Watcher订阅者作为Observer和Compile之间通信的桥梁，主要做的事情是</p>
-<ul>
-<li>在自身实例化时往属性订阅器(dep)里面添加自己</li>
-<li>自身必须有一个update()方法</li>
-<li>待属性变动dep.notice()通知时，能调用自身的update()方法，并触发Compile中绑定的回调</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">function Watcher(vm,exp,cb)&#123;</span><br><span class="line">    this.cb &#x3D; cb;</span><br><span class="line">    this.vm &#x3D; vm;</span><br><span class="line">    this.exp &#x3D; exp;</span><br><span class="line">    &#x2F;&#x2F;此处为了触发属性的getter,从而在dep添加自己，结合Observer更容易理解</span><br><span class="line">    this.value &#x3D; this.get();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Watcher.prototype &#x3D; &#123;</span><br><span class="line">    update:function()&#123;</span><br><span class="line">        this.run(); &#x2F;&#x2F;属性值变化收到通知</span><br><span class="line">    &#125;,</span><br><span class="line">    run:function()&#123;</span><br><span class="line">        var value &#x3D; this.get();&#x2F;&#x2F;取到最新值</span><br><span class="line">        var oldValue &#x3D; this.value;</span><br><span class="line">        if(value !&#x3D;&#x3D; oldValue)&#123;</span><br><span class="line">            this.value &#x3D; value;</span><br><span class="line">            this.cb.call(this.vm,value,oldVal);&#x2F;&#x2F;执行Compile中绑定的回调，更新视图</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    get:function()&#123;</span><br><span class="line">        Dep.target &#x3D; this;&#x2F;&#x2F;将当前订阅者指向自己</span><br><span class="line">        var value &#x3D; this.vm[exp]; &#x2F;&#x2F;触发getter,添加自己到属性订阅器中</span><br><span class="line">        Dep.target &#x3D; null;&#x2F;&#x2F;添加完毕，重置</span><br><span class="line">        return value;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">&#x2F;&#x2F;这里再次列出Observer和Dep,方便理解</span><br><span class="line">Object.defineProperty(data,key,&#123;</span><br><span class="line">    get:function()&#123;</span><br><span class="line">        &#x2F;&#x2F;由于需要在闭包内添加watcher,所以可以在Dep定义一个全局的target属性，暂存watcher,添加完移除</span><br><span class="line">        Dep.target &amp;&amp; dep.addDep(Dep.target);</span><br><span class="line">        return val;</span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;&#x2F; ...省略</span><br><span class="line">&#125;);</span><br><span class="line">Dep.prototype &#x3D; &#123;</span><br><span class="line">    notify:function()&#123;</span><br><span class="line">        this.subs.forEach(function(sub)&#123;</span><br><span class="line">            sub.update();&#x2F;&#x2F;调用订阅者的update方法，通知变化</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>实例化<code>Watcher</code>的时候，调用<code>get()</code>方法，通过<code>Dep.target = watcherInstance</code>标记订阅者是当前Watche实例，强行触发属性定义的<code>getter</code>方法，<code>getter</code>方法执行的时候，就会在属性的订阅器<code>dep</code>添加当前watcher实例，从而属性值有变化的时候，watcherinstance就能收到更新通知。</p>
-<h4 id="补充实例化Watcher的场景"><a href="#补充实例化Watcher的场景" class="headerlink" title="补充实例化Watcher的场景"></a>补充实例化Watcher的场景</h4><ul>
-<li>Vue实例化过程中的Watch选项</li>
-<li>Vue实例化过程中的Computed计算属性选项</li>
-<li>Vue原型上有挂载$watch方法：Vue.prototype.$watch,可以直接通过实例调用this.$watch方法</li>
-<li>Vue生成了render函数，更新视图时</li>
-</ul>
-<h3 id="nextTick"><a href="#nextTick" class="headerlink" title="nextTick"></a>nextTick</h3><p>主线程的执行过程就是一个<code>tick</code></p>
-<h3 id="实现MVVM"><a href="#实现MVVM" class="headerlink" title="实现MVVM"></a>实现MVVM</h3><p>MVVM作为数据绑定的入口，整合Observer、Compile和Watcher三者,通过Observer来监听自己的model数据变化，通过Compile来解析编译模板指令，最终利用Watcher搭起Observer和Compile之间的沟通桥梁。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">function MVVM(options) &#123;</span><br><span class="line">    this.$options &#x3D; options || &#123;&#125;;</span><br><span class="line">    var data &#x3D; this._data &#x3D; this.$options.data;</span><br><span class="line">    var me &#x3D; this;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 数据代理</span><br><span class="line">    &#x2F;&#x2F; 实现 vm.xxx -&gt; vm._data.xxx</span><br><span class="line">    Object.keys(data).forEach(function(key) &#123;</span><br><span class="line">        me._proxyData(key);</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    this._initComputed();</span><br><span class="line"></span><br><span class="line">    observe(data, this);</span><br><span class="line"></span><br><span class="line">    this.$compile &#x3D; new Compile(options.el || document.body, this)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>1、实例化MVVM的时候，会先调用observe就是Observer类的方法，从而对数据劫持。<br><strong>每个对象值的getter都持有一个<code>dep</code>,这里的dep是观察者管理器Dep类中有一个subs数组是用来收集watcher</strong></p>
-<p>2、实例化Compile,传入模板,可以认为在模板上用到data选项（也就是被observe劫持的数据）里面的标签就是一个watcher实例</p>
-<p>3、实例化watcher的同时，会触发劫持属性的get方法从而添加自己到订阅中去。<strong>即触发了<code>dep.depend()方法</code></strong></p>
-<p>4、然后改变劫持属性的时候，会发送通知给watcher触发update方法更新</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/11/webpack%E5%9F%BA%E7%A1%80/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Luzy">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Luzy's Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/02/11/webpack%E5%9F%BA%E7%A1%80/" class="post-title-link" itemprop="url">webpack基础</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/webpack/" itemprop="url" rel="index">
-                    <span itemprop="name">webpack</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>本质上，<strong>webpack</strong>是一个现代JavaScript应用程序的静态模块打包工具。当webpack处理应用程序时，它会在内部构建一个依赖图，此依赖图会映射项目所需的每个模块，并生成一个或多个bundle</p>
-<h4 id="核心概念"><a href="#核心概念" class="headerlink" title="核心概念"></a>核心概念</h4><ul>
-<li>入口（entry）</li>
-<li>输出（output）</li>
-<li>loader</li>
-<li>插件（plugin）</li>
-<li>模式（mode）</li>
-</ul>
-<h3 id="入口起点（entry-points）"><a href="#入口起点（entry-points）" class="headerlink" title="入口起点（entry points）"></a>入口起点（entry points）</h3><p>指示webpack应该使用哪个模块，将其作为构建其内部依赖图的开始。进入入口起点后，webpack会找到有哪些模块和库是入口七点（直接和间接）依赖的。</p>
-<h4 id="单个入口"><a href="#单个入口" class="headerlink" title="单个入口"></a>单个入口</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">module.exports &#x3D; &#123;</span><br><span class="line">  entry: &#123;</span><br><span class="line">    main: &#39;.&#x2F;path&#x2F;to&#x2F;my&#x2F;entry&#x2F;file.js&#39;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<h4 id="多入口"><a href="#多入口" class="headerlink" title="多入口"></a>多入口</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">module.exports &#x3D; &#123;</span><br><span class="line">  entry: &#123;</span><br><span class="line">    app: &#39;.&#x2F;src&#x2F;app.js&#39;,</span><br><span class="line">    adminApp: &#39;.&#x2F;src&#x2F;adminApp.js&#39;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<h3 id="输出（output）"><a href="#输出（output）" class="headerlink" title="输出（output）"></a>输出（output）</h3><p>告诉webpack在哪里输出它所创建的bundle,以及如何命名这些文件。主要输出文件的默认值是<code>./dist/main.js</code>，其他生成文件默认放置在<code>./dist</code>文件夹中。</p>
-<h4 id="单入口"><a href="#单入口" class="headerlink" title="单入口"></a>单入口</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">module.exports &#x3D; &#123;</span><br><span class="line">  output: &#123;</span><br><span class="line">    filename: &#39;bundle.js&#39;,</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<h4 id="多个起点"><a href="#多个起点" class="headerlink" title="多个起点"></a>多个起点</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">module.exports &#x3D; &#123;</span><br><span class="line">  entry: &#123;</span><br><span class="line">    app: &#39;.&#x2F;src&#x2F;app.js&#39;,</span><br><span class="line">    search: &#39;.&#x2F;src&#x2F;search.js&#39;</span><br><span class="line">  &#125;,</span><br><span class="line">  output: &#123;</span><br><span class="line">    filename: &#39;[name].js&#39;,</span><br><span class="line">    path: __dirname + &#39;&#x2F;dist&#39;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 写入到硬盘：.&#x2F;dist&#x2F;app.js, .&#x2F;dist&#x2F;search.js</span><br></pre></td></tr></table></figure>
-
-<h3 id="loader"><a href="#loader" class="headerlink" title="loader"></a>loader</h3><p>webpack只能理解JavaScript和JSON文件。<code>loader</code>让webpack能够去处理其他类型的文件，并将它们转化为有效模块，以供应用程序使用，以及被添加到依赖图中。</br></p>
-<p>在webpack的配置中loader有两个属性：</p>
-<ul>
-<li><p><code>test</code>属性，用于标识出应该被对应的<code>loader</code>进行转换的某个或某些文件</p>
-</li>
-<li><p><code>use</code>属性，表示进行转换用哪个loader。</p>
-<h4 id="常见Loaders"><a href="#常见Loaders" class="headerlink" title="常见Loaders"></a>常见<code>Loaders</code></h4></li>
-<li><p><code>babel-loader</code></br><br>转换ES6、ES7等JS新特性语法</p>
-</li>
-<li><p><code>css-loader</code></br><br>支持.css文件的加载和解析</p>
-</li>
-<li><p><code>less-loader</code></br><br>将less文件转换成css</p>
-</li>
-<li><p><code>ts-loader</code></br><br>将TS转换成JS</p>
-</li>
-<li><p><code>file-loader</code></br><br>进行图片、字体等的打包</p>
-</li>
-<li><p><code>raw-loader</code></br><br>将文件以字符串的形式导入</p>
-</li>
-<li><p><code>thread-loader</code></br><br>多进程打包JS和CSS</p>
-</li>
-</ul>
-<h3 id="插件（plugin）"><a href="#插件（plugin）" class="headerlink" title="插件（plugin）"></a>插件（plugin）</h3><p>loader用于转换某些类型的模块，而插件则可以用于执行范围更广的任务。包括：打包优化，资源管理，注入环境变量。</p>
-<p>webpack.config.js</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">const HtmlWebpackPlugin &#x3D; require(&#39;html-webpack-plugin&#39;);&#x2F;&#x2F;通过 npm 安装</span><br><span class="line"></span><br><span class="line">const webpack &#x3D; require(&#39;webpack&#39;);&#x2F;&#x2F;用于访问内置插件</span><br><span class="line"></span><br><span class="line">module.exports &#x3D; &#123;</span><br><span class="line">    module:&#123;</span><br><span class="line">        rules:[</span><br><span class="line">            &#123; test: &#x2F;\.txt$&#x2F;, use: &#39;raw-loader&#39; &#125;</span><br><span class="line">        ]</span><br><span class="line">    &#125;,</span><br><span class="line">    plugins:[</span><br><span class="line">        new HtmlWebpackPlugin(&#123;template: &#39;.&#x2F;src&#x2F;index.html&#39;&#125;)</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>在上面的示例中，<code>html-webpack-plugin</code>为应用程序生成一个HTML文件，并自动注入所有生成的bundle。</p>
-<h4 id="常见的Plugins"><a href="#常见的Plugins" class="headerlink" title="常见的Plugins"></a>常见的Plugins</h4><ul>
-<li><code>CommonsChunkPlugin</code></br><br>将chunks相同的模块代码提取成公共JS</li>
-<li><code>CleanWebpackPlugin</code></br><br>清空构建目录</li>
-<li><code>ExtractTextWebpackPlugin</code></br><br>将CSS从bundle文件中提取成一个独立的CSS文件</li>
-<li><code>CopyWebpackPlugin</code></br><br>将文件或者文件夹拷贝到构建的输出目录</li>
-<li><code>HtmlWebpackPlugin</code></br><br>创建html文件去承载输出的bundle</li>
-<li><code>UglifyjsWebpackPlugin</code></br><br>压缩JS</li>
-<li><code>ZipWebpackPlugin</code></br><br>将打包出的资源生成一个zip包</li>
-</ul>
-<h3 id="开发工具"><a href="#开发工具" class="headerlink" title="开发工具"></a>开发工具</h3><h4 id="webpack-watch-mode-webpack观察模式"><a href="#webpack-watch-mode-webpack观察模式" class="headerlink" title="webpack watch mode(webpack观察模式)"></a><code>webpack watch mode(webpack观察模式)</code></h4><p>使用<code>webpack --watch</code>命令依赖图中所有文件的更改。如果其中一个文件被更新，代码将重新编译，所以你不必再去手动运行整个构建。</p>
-<h4 id="使用-webpack-dev-server"><a href="#使用-webpack-dev-server" class="headerlink" title="使用 webpack-dev-server"></a>使用 webpack-dev-server</h4><p><code>webpack-dev-server</code>为你提供了一个简单的web server,并且具有live reloading(实时重新加载)功能。</p>
-<blockquote>
-<p><code>webpack-dev-server</code>在编译之后不会写入到任何输出文件，而是将bundle文件保留在内存中，然后将它们serve到server中，就好像它们是挂载在server根路径上的真实文件一样。如果你的页面希望在其他不同路径中找到bundle文件，则可以通过dev server配置中的<code>publicPath</code>选项中进行修改</p>
-</blockquote>
-<h3 id="使用webpack-dev-middleware"><a href="#使用webpack-dev-middleware" class="headerlink" title="使用webpack-dev-middleware"></a>使用webpack-dev-middleware</h3><p><code>webpack-dev-middle</code>是一个封装器(wrapper)，它可以把webpack处理过的文件发送到一个server。<code>webpack-dev-server</code>在内部使用了它，然而它也可以作为一个单独的package来使用，以便根据需求进行跟多自定义设置。</p>
-<h3 id="运用"><a href="#运用" class="headerlink" title="运用"></a>运用</h3><h4 id="配置html模板"><a href="#配置html模板" class="headerlink" title="配置html模板"></a>配置html模板</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">const path &#x3D; require(&#39;path&#39;);</span><br><span class="line">const HtmlwebpackPlugin &#x3D; require(&#39;html-webpack-plugin&#39;);</span><br><span class="line">const &#123;CleanWebpackPlugin&#125; &#x3D; require(&#39;clean-webpack-plugin&#39;);</span><br><span class="line"></span><br><span class="line">module.exports &#x3D; &#123;</span><br><span class="line">  mode:&#39;development&#39;,&#x2F;&#x2F;开发模式</span><br><span class="line">  entry: &#123;</span><br><span class="line">      main: &#39;.&#x2F;main.js&#39;, &#x2F;&#x2F;入口文件</span><br><span class="line">  &#125;,</span><br><span class="line">  output: &#123;</span><br><span class="line">    filename: &#39;[name].[hash:8].js&#39;,&#x2F;&#x2F;打包后的文件名称</span><br><span class="line">    path: path.resolve(__dirname,&#39;dist&#39;) &#x2F;&#x2F;打包后的目录</span><br><span class="line">  &#125;,</span><br><span class="line">  resolve:&#123;</span><br><span class="line">    alias:&#123;</span><br><span class="line">        &#39;vue$&#39;:&#39;vue&#x2F;dist&#x2F;vue.runtime.esm.js&#39;,</span><br><span class="line">    &#125;,</span><br><span class="line">    extensions:[&#39;*&#39;,&#39;.js&#39;,&#39;.json&#39;,&#39;.vue&#39;]</span><br><span class="line">  &#125;,</span><br><span class="line">   plugins:[</span><br><span class="line">      new HtmlwebpackPlugin(&#123;</span><br><span class="line">          template:&#39;index.html&#39;,</span><br><span class="line">          filename:&#39;index.html&#39;,</span><br><span class="line">      &#125;),</span><br><span class="line">    new CleanWebpackPlugin(),</span><br><span class="line">  ]</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
-
-
-<p><a href="https://webpack.docschina.org/configuration/output/#output-publicpath">官方文档</a></p>
-<p><a href="https://juejin.im/post/5de87444518825124c50cd36#heading-33">参考文章</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/05/%E6%9F%AF%E9%87%8C%E5%8C%96/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Luzy">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Luzy's Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/02/05/%E6%9F%AF%E9%87%8C%E5%8C%96/" class="post-title-link" itemprop="url">柯里化</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JS%E7%9B%B8%E5%85%B3/" itemprop="url" rel="index">
-                    <span itemprop="name">JS相关</span>
-                  </a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JS%E7%9B%B8%E5%85%B3/%E6%9F%AF%E9%87%8C%E5%8C%96/" itemprop="url" rel="index">
-                    <span itemprop="name">柯里化</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>柯里化是一种将使用多个参数的一个函数转换成一系列使用一个参数的函数,并且返回接受余下的参数而且返回结果的新函数的新技术。</p>
-<h3 id="实现关键"><a href="#实现关键" class="headerlink" title="实现关键"></a>实现关键</h3><p>比较多次接受的参数总数与函数定义时的入参数量，当接受参数的数量大于或等于被Currying函数的传入参数数量时，就返回计算结果，否则返回一个继续接受参数的函数</p>
-<h3 id="用途"><a href="#用途" class="headerlink" title="用途"></a>用途</h3><p>参数复用。本质上是降低通用性，提高适用性</p>
-<p>比如有一段数据<br><br><code>var person =  [{name:&#39;kevin&#39;},{name:&#39;daisy&#39;}]</code></p>
-<p>如果我们要获取所有的name值，我们可以这样做：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var name &#x3D; person.map(function(item)&#123;</span><br><span class="line">    return item.name;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-<p>不过如果我们有curry函数：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var prop &#x3D; curry(function(key,obj)&#123;</span><br><span class="line">    return obj[key]</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">var name &#x3D; person.map(prop(&#39;name&#39;))</span><br></pre></td></tr></table></figure>
-<h4 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function currying(fn) &#123;</span><br><span class="line">           let args &#x3D; Array.prototype.slice.call(arguments, 1)</span><br><span class="line">           if (args.length &lt; fn.length) &#123;</span><br><span class="line">               return function () &#123;</span><br><span class="line">                   let binArgs &#x3D; Array.prototype.slice.call(arguments);</span><br><span class="line">                   return currying(fn, ...args, ...arguments);</span><br><span class="line">               &#125;</span><br><span class="line">           &#125; else &#123;</span><br><span class="line">               return fn.apply(null, args);</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="精简实现"><a href="#精简实现" class="headerlink" title="精简实现"></a>精简实现</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">const curry &#x3D; (fn,...args)&#x3D;&gt;&#123;</span><br><span class="line">    args.length &lt; fn.length</span><br><span class="line">    &#x2F;&#x2F;参数长度不足时，重新柯里化该函数，等待接受新参数</span><br><span class="line">    ?(...arguments)&#x3D;&gt; curry(fn,...args,...arguments)</span><br><span class="line">    &#x2F;&#x2F;参数长度满足时，执行函数</span><br><span class="line">    :fn(...args);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-<h4 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function sumFn(a,b,c)&#123;</span><br><span class="line">    return a + b + c;</span><br><span class="line">&#125;</span><br><span class="line">var sum &#x3D; curry(sumFn);</span><br><span class="line">console.log(sum(2)(3)(5));&#x2F;&#x2F;10</span><br><span class="line">console.log(sum(2,3,5));&#x2F;&#x2F;10</span><br><span class="line">console.log(sum(2)(3,5));&#x2F;&#x2F;10</span><br><span class="line">console.log(sum(2,3)(5));&#x2F;&#x2F;10</span><br></pre></td></tr></table></figure>
-
-<h4 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h4><ul>
-<li>参数复用</li>
-<li>提前返回-返回接受余下的参数且返回结果的新函数</li>
-<li>延迟执行- 返回新函数，等待执行</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/28/%E7%BB%A7%E6%89%BF/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Luzy">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Luzy's Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/01/28/%E7%BB%A7%E6%89%BF/" class="post-title-link" itemprop="url">继承</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JS%E7%9B%B8%E5%85%B3/" itemprop="url" rel="index">
-                    <span itemprop="name">JS相关</span>
-                  </a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JS%E7%9B%B8%E5%85%B3/%E7%BB%A7%E6%89%BF/" itemprop="url" rel="index">
-                    <span itemprop="name">继承</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="1、原型链继承"><a href="#1、原型链继承" class="headerlink" title="1、原型链继承"></a>1、原型链继承</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">function Parent () &#123;</span><br><span class="line">    this.name &#x3D; &#39;kevin&#39;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Parent.prototype.getName &#x3D; function () &#123;</span><br><span class="line">    console.log(this.name);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function Child () &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Child.prototype &#x3D; new Parent();</span><br><span class="line"></span><br><span class="line">var child1 &#x3D; new Child();</span><br><span class="line"></span><br><span class="line">console.log(child1.getName()) &#x2F;&#x2F; kevin</span><br></pre></td></tr></table></figure>
-
-<h4 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h4><ul>
-<li>原先的实例属性变成了现在的原型属性，该原型的引用类型属性会被所有的实例共享</li>
-</ul>
-<h3 id="2、借助构造函数（经典继承）"><a href="#2、借助构造函数（经典继承）" class="headerlink" title="2、借助构造函数（经典继承）"></a>2、借助构造函数（经典继承）</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">function Parent () &#123;</span><br><span class="line">    this.names &#x3D; [&#39;kevin&#39;, &#39;daisy&#39;];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function Child () &#123;</span><br><span class="line">    Parent.call(this);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var child1 &#x3D; new Child();</span><br><span class="line"></span><br><span class="line">child1.names.push(&#39;yayu&#39;);</span><br><span class="line"></span><br><span class="line">console.log(child1.names); &#x2F;&#x2F; [&quot;kevin&quot;, &quot;daisy&quot;, &quot;yayu&quot;]</span><br><span class="line"></span><br><span class="line">var child2 &#x3D; new Child();</span><br><span class="line"></span><br><span class="line">console.log(child2.names); &#x2F;&#x2F; [&quot;kevin&quot;, &quot;daisy&quot;]</span><br></pre></td></tr></table></figure>
-
-<h4 id="缺点-1"><a href="#缺点-1" class="headerlink" title="缺点"></a>缺点</h4><ul>
-<li>方法都在构造函数中定义，函数复用无从谈起，另外超类型原型中定义的方法对于子类型而言都是不可见的</li>
-</ul>
-<h3 id="3、组合继承"><a href="#3、组合继承" class="headerlink" title="3、组合继承"></a>3、组合继承</h3><p>使用原型链实现对原型属性和方法的继承，通过借用构造函数来实现对实例属性的继承。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">function Parent (name) &#123;</span><br><span class="line">    this.name &#x3D; name;</span><br><span class="line">    this.colors &#x3D; [&#39;red&#39;, &#39;blue&#39;, &#39;green&#39;];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Parent.prototype.getName &#x3D; function () &#123;</span><br><span class="line">    console.log(this.name)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function Child (name, age) &#123;</span><br><span class="line"></span><br><span class="line">    Parent.call(this, name);</span><br><span class="line">    </span><br><span class="line">    this.age &#x3D; age;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Child.prototype &#x3D; new Parent();</span><br><span class="line"></span><br><span class="line">var child1 &#x3D; new Child(&#39;kevin&#39;, &#39;18&#39;);</span><br><span class="line"></span><br><span class="line">child1.colors.push(&#39;black&#39;);</span><br><span class="line"></span><br><span class="line">console.log(child1.name); &#x2F;&#x2F; kevin</span><br><span class="line">console.log(child1.age); &#x2F;&#x2F; 18</span><br><span class="line">console.log(child1.colors); &#x2F;&#x2F; [&quot;red&quot;, &quot;blue&quot;, &quot;green&quot;, &quot;black&quot;]</span><br><span class="line"></span><br><span class="line">var child2 &#x3D; new Child(&#39;daisy&#39;, &#39;20&#39;);</span><br><span class="line"></span><br><span class="line">console.log(child2.name); &#x2F;&#x2F; daisy</span><br><span class="line">console.log(child2.age); &#x2F;&#x2F; 20</span><br><span class="line">console.log(child2.colors); &#x2F;&#x2F; [&quot;red&quot;, &quot;blue&quot;, &quot;green&quot;]</span><br></pre></td></tr></table></figure>
-
-<h4 id="缺点-2"><a href="#缺点-2" class="headerlink" title="缺点"></a>缺点</h4><ul>
-<li>无论什么情况下，都会调用两次超类型构造函数：一次是在创建子类型原型的时候，另一次是在子类型构造函数内部。</li>
-</ul>
-<h3 id="4、原型式继承"><a href="#4、原型式继承" class="headerlink" title="4、原型式继承"></a>4、原型式继承</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function createObj(o) &#123;</span><br><span class="line">    function F()&#123;&#125;</span><br><span class="line">    F.prototype &#x3D; o;</span><br><span class="line">    return new F();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这就是ES5 <code>Object.create</code>的模拟实现，将传入的对象作为创建的对象的原型。</p>
-<p>ECMAScript5通过新增<code>Object.create()</code>方法规范了原型式继承。这个方法接受两个参数：一个用作新对象原型的对象和（可选的）一个为新对象定义额外属性的对象（可以覆盖原型对象上的同名属性），在传入一个参数的情况下，<code>Object.create()</code>和<code>object()</code>方法的行为相同</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">var person &#x3D; &#123;</span><br><span class="line">    name : &#39;Yvette&#39;,</span><br><span class="line">    hobbies:[&#39;reading&#39;,&#39;photography&#39;]</span><br><span class="line">&#125;</span><br><span class="line">var person1 &#x3D; Object.create(person);</span><br><span class="line">person1.name &#x3D; &#39;Jack&#39;;</span><br><span class="line">person1.hobbies.push(&#39;coding&#39;);</span><br><span class="line">var person2 &#x3D; Object.create(person);</span><br><span class="line">person2.name &#x3D; &#39;Echo&#39;;</span><br><span class="line">person2.hobbies.push(&#39;running&#39;);</span><br><span class="line">cosole.log(person.hobbies);&#x2F;&#x2F;[&#39;reading&#39;,&#39;photography&#39;,&#39;coding&#39;,&#39;running&#39;]</span><br><span class="line">console.log(person1.hobbies);&#x2F;&#x2F;[&#39;reading&#39;,&#39;photography&#39;,&#39;coding&#39;,&#39;running&#39;]</span><br></pre></td></tr></table></figure>
-
-<h4 id="缺点-3"><a href="#缺点-3" class="headerlink" title="缺点"></a>缺点</h4><ul>
-<li>通原型链继承一样，包含引用类型值的属性会被实例共享。</li>
-</ul>
-<h3 id="5、寄生式继承"><a href="#5、寄生式继承" class="headerlink" title="5、寄生式继承"></a>5、寄生式继承</h3><p>创建一个仅用于封装继承过程的函数，该函数在内部以某种形式来做增强对象，最后返回对象。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">function createObj (o) &#123;</span><br><span class="line">    var clone &#x3D; object.create(o);</span><br><span class="line">    clone.sayName &#x3D; function () &#123;</span><br><span class="line">        console.log(&#39;hi&#39;);</span><br><span class="line">    &#125;</span><br><span class="line">    return clone;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="缺点-4"><a href="#缺点-4" class="headerlink" title="缺点"></a>缺点</h4><ul>
-<li>使用寄生式继承来为对象添加函数，会由于不能做到函数复用而效率底下。</li>
-<li>同原型链实现继承一样，包含引用类型值的属性会被所有实例共享。</li>
-</ul>
-<h3 id="6、寄生组合式继承"><a href="#6、寄生组合式继承" class="headerlink" title="6、寄生组合式继承"></a>6、寄生组合式继承</h3><p>即通过借助构造函数来继承属性，通过原型链的混成形式来继承方法。<br><strong>与组合继承相比降低了父类构造函数的开销</strong></p>
-<ul>
-<li><p>糙版</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">function Parent (name) &#123;</span><br><span class="line">    this.name &#x3D; name;</span><br><span class="line">    this.colors &#x3D; [&#39;red&#39;, &#39;blue&#39;, &#39;green&#39;];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Parent.prototype.getName &#x3D; function () &#123;</span><br><span class="line">    console.log(this.name)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function Child (name, age) &#123;</span><br><span class="line">    Parent.call(this, name);</span><br><span class="line">    this.age &#x3D; age;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 关键的三步</span><br><span class="line">var F &#x3D; function () &#123;&#125;;</span><br><span class="line"></span><br><span class="line">F.prototype &#x3D; Parent.prototype;</span><br><span class="line"></span><br><span class="line">Child.prototype &#x3D; new F();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">var child1 &#x3D; new Child(&#39;kevin&#39;, &#39;18&#39;);</span><br><span class="line"></span><br><span class="line">console.log(child1);</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>精简</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function inheritPrototype(subType,superType)&#123;</span><br><span class="line">    var prototype &#x3D; object(superType.prototype);&#x2F;&#x2F;创建对象</span><br><span class="line">    prototype.constructor &#x3D; subType;&#x2F;&#x2F;增强对象</span><br><span class="line">    subType.prototype &#x3D; prototype;&#x2F;&#x2F;指定对象</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><code>prototype.constructor = subType有何作用？</code></p>
-</li>
-</ul>
-<p>因为<code>subType.prototype = o1</code>代码重写了<code>subType</code>的原型对象，这时的原型已经与最初的<code>subType</code>原型对象失去联系，从而需要校正<code>subType</code>的<code>constructor</code>。</p>
-<p><a href="https://segmentfault.com/a/1190000015727237">参考链接</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1217,14 +1102,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-count">18</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-count">19</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
   </nav>
