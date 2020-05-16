@@ -46,22 +46,15 @@
   };
 </script>
 
-  <meta name="description" content="单页面路由原理hash模式例如www.baidu.com&#x2F;#help，当##后面的哈希值发生变化时，不会向服务器请求数据，可以通过hashchange事件来监听到URL的变化，从而进行跳转页面 history模式 HTML5中的两个API:pushState和replaceState,改变url之后页面不会重新刷新，也不会带#号，页面地址美观，url的改变会触发popState事件，监听该事件也可">
-<meta property="og:type" content="article">
-<meta property="og:title" content="VueRouter的两种模式">
-<meta property="og:url" content="http://yoursite.com/2020/01/20/vuerouter%E7%9A%84%E4%B8%A4%E7%A7%8D%E6%A8%A1%E5%BC%8F/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Luzy&#39;s Blog">
+<meta property="og:url" content="http://yoursite.com/categories/React/Hooks/index.html">
 <meta property="og:site_name" content="Luzy&#39;s Blog">
-<meta property="og:description" content="单页面路由原理hash模式例如www.baidu.com&#x2F;#help，当##后面的哈希值发生变化时，不会向服务器请求数据，可以通过hashchange事件来监听到URL的变化，从而进行跳转页面 history模式 HTML5中的两个API:pushState和replaceState,改变url之后页面不会重新刷新，也不会带#号，页面地址美观，url的改变会触发popState事件，监听该事件也可">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://api.fly63.com/vue_blog/public/Uploads/20190220/5c6d5d956b4e4.jpg">
-<meta property="og:image" content="http://api.fly63.com/vue_blog/public/Uploads/20190220/5c6d5d9b70ec2.jpg">
-<meta property="article:published_time" content="2020-01-20T02:57:20.000Z">
-<meta property="article:modified_time" content="2020-01-20T03:00:01.618Z">
 <meta property="article:author" content="Luzy">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://api.fly63.com/vue_blog/public/Uploads/20190220/5c6d5d956b4e4.jpg">
 
-<link rel="canonical" href="http://yoursite.com/2020/01/20/vuerouter%E7%9A%84%E4%B8%A4%E7%A7%8D%E6%A8%A1%E5%BC%8F/">
+<link rel="canonical" href="http://yoursite.com/categories/React/Hooks/">
 
 
 <script id="page-configurations">
@@ -69,11 +62,11 @@
   CONFIG.page = {
     sidebar: "",
     isHome: false,
-    isPost: true
+    isPost: false
   };
 </script>
 
-  <title>VueRouter的两种模式 | Luzy's Blog</title>
+  <title>分类: Hooks | Luzy's Blog</title>
   
 
 
@@ -172,96 +165,50 @@
           <div class="content">
             
 
-  <div class="posts-expand">
-      
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/20/vuerouter%E7%9A%84%E4%B8%A4%E7%A7%8D%E6%A8%A1%E5%BC%8F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Luzy">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Luzy's Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          VueRouter的两种模式
+  
+  <div class="post-block">
+    <div class="posts-collapse">
+      <div class="collection-title">
+        <h1 class="collection-header">Hooks
+          <small>分类</small>
         </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Vue/" itemprop="url" rel="index">
-                    <span itemprop="name">Vue</span>
-                  </a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Vue/Vue-Router/" itemprop="url" rel="index">
-                    <span itemprop="name">Vue Router</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
+      </div>
 
       
-        <h2 id="单页面路由原理"><a href="#单页面路由原理" class="headerlink" title="单页面路由原理"></a>单页面路由原理</h2><h3 id="hash模式"><a href="#hash模式" class="headerlink" title="hash模式"></a>hash模式</h3><p>例如<code>www.baidu.com/#help</code>，当##后面的哈希值发生变化时，<strong>不会向服务器请求数据</strong>，可以通过<code>hashchange</code>事件来监听到URL的变化，从而进行跳转页面<br><img src="http://api.fly63.com/vue_blog/public/Uploads/20190220/5c6d5d956b4e4.jpg" alt="image"></p>
-<h3 id="history模式"><a href="#history模式" class="headerlink" title="history模式"></a>history模式</h3><ul>
-<li>HTML5中的两个API:pushState和replaceState,改变url之后页面不会重新刷新，也不会带#号，页面地址美观，url的改变会触发popState事件，监听该事件也可以实现根据不同的url渲染对应的页面内容</li>
-<li>但是因为没有#会导致用户刷新页面的时候，还会发送请求到服务器，为避免这种情况，需要每次url改变的时候，都将所有的路由重新定位到根路由下。 </li>
-</ul>
-<p>history模式相比hash模式更美观，需要用到Html5新增的几个api实现</p>
-<p><img src="http://api.fly63.com/vue_blog/public/Uploads/20190220/5c6d5d9b70ec2.jpg" alt="image"></p>
-<p><a href="https://juejin.im/post/5b5697675188251b11097464">参考链接</a></p>
-
+    <div class="collection-year">
+      <h1 class="collection-header">2020</h1>
     </div>
 
-    
-    
-    
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
 
-      <footer class="post-footer">
+      <div class="post-meta">
+        <time itemprop="dateCreated"
+              datetime="2020-05-16T13:40:28+08:00"
+              content="2020-05-16">
+          05-16
+        </time>
+      </div>
 
-        
+      <h2 class="post-title">
+          <a class="post-title-link" href="/2020/05/16/Hooks%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95/" itemprop="url">
+            <span itemprop="name">Hooks基本用法</span>
+          </a>
+      </h2>
 
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/2020/01/20/history/" rel="prev" title="history">
-      <i class="fa fa-chevron-left"></i> history
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/2020/01/28/%E7%BB%A7%E6%89%BF/" rel="next" title="继承">
-      继承 <i class="fa fa-chevron-right"></i>
-    </a></div>
-    </div>
-      </footer>
-    
+    </header>
   </article>
+
+    </div>
+  </div>
   
   
   
 
-  </div>
+  
+
 
 
           </div>
@@ -312,7 +259,6 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#单页面路由原理"><span class="nav-number">1.</span> <span class="nav-text">单页面路由原理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#hash模式"><span class="nav-number">1.1.</span> <span class="nav-text">hash模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#history模式"><span class="nav-number">1.2.</span> <span class="nav-text">history模式</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
