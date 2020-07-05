@@ -170,6 +170,185 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/05/withRouter%E4%BD%BF%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Luzy">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Luzy's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/07/05/withRouter%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">withRouter使用</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/React/" itemprop="url" rel="index">
+                    <span itemprop="name">React</span>
+                  </a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/React/Router/" itemprop="url" rel="index">
+                    <span itemprop="name">Router</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h2><p>withRouter是react-route的一个高阶组件，可获取history</p>
+<p>render时会把match,location和history传入props</p>
+<h3 id="history"><a href="#history" class="headerlink" title="history"></a><code>history</code></h3><ul>
+<li><code>action</code></br><br>可得知路由栈的操作是<code>POP</code>、<code>PUSH</code>、<code>REPLACE</code><h3 id="location"><a href="#location" class="headerlink" title="location"></a><code>location</code></br></h3><ul>
+<li><code>pathname</code>当前路由的绝对路径</li>
+<li><code>search</code>查询参数，访问<code>/user?userId=123</code>=&gt;可以拿到<code>?userId=123</code></li>
+<li><code>hash</code>:<code>#the-hash</code></li>
+<li><code>state</code>:类似vue的路由元信息<code>meta</code>,在这里的存储的信息不会明文显示在浏览器上</li>
+</ul>
+</li>
+</ul>
+<h3 id="match"><a href="#match" class="headerlink" title="match"></a><code>match</code></br></h3><pre><code>- `params`当`&lt;Route to=&apos;/user/:id&apos; component={user}&gt;`,访问`/user/123`在`user`组件中。`this.props.match.params.id`可以获取id
+- `isExact`,当前路由是不是完全匹配</code></pre><h2 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h2><p>路由组件是可以直接获取这些属性（<code>history</code>、<code>location</code>,<code>match</code>）,而非路由组件就必须通过<code>withRouter</code>修饰后才能获取这些属性。<br>例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;Route path&#x3D;&#39;&#x2F;&#39; component&#x3D;&#123;App&#125; &#x2F;&gt;</span><br></pre></td></tr></table></figure>
+<p>App组件就可以直接获取路由中这些属性，但是，如果App组件汇总有一个子组件<code>Foo</code>，那么<code>Foo</code>就不能直接获取路由中的属性了，必须通过<code>withRouter</code>修饰后才能获取到</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/05/React-router%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Luzy">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Luzy's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/07/05/React-router%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5/" class="post-title-link" itemprop="url">React Router相关概念</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/React/" itemprop="url" rel="index">
+                    <span itemprop="name">React</span>
+                  </a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/React/Router/" itemprop="url" rel="index">
+                    <span itemprop="name">Router</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;写法一</span><br><span class="line">import &#123;Switch,Route,Router,HashHistory,Link&#125; from &#39;react-router-dom&#39;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;写法二</span><br><span class="line">import &#123;Switch,Route,Router&#125; from &#39;react-router&#39;</span><br><span class="line">import &#123;HashHistory,Link&#125; from &#39;react-router-dom&#39;</span><br></pre></td></tr></table></figure>
+
+<h2 id="react-router-react-router-dom和react-router-native"><a href="#react-router-react-router-dom和react-router-native" class="headerlink" title="react-router,react-router-dom和react-router-native"></a><code>react-router</code>,<code>react-router-dom</code>和<code>react-router-native</code></h2><h3 id="react-router"><a href="#react-router" class="headerlink" title="react-router"></a><code>react-router</code></h3><p>提供了一些router的核心api,包括<code>Router</code>,<code>Route</code>,<code>Switch</code>等，但是它没有提供dom操作进行跳转的api,<strong>服务器端渲染</strong>正好可以。</p>
+<h3 id="react-router-dom"><a href="#react-router-dom" class="headerlink" title="react-router-dom"></a><code>react-router-dom</code></h3><p>基于<code>react-router</code>，加入了在浏览器运行环境下的一些功能，我们可以通过dom的事件控制路由。例如<code>Link</code>组件，会渲染一个<code>a</code>标签；<code>BrowserRouter</code>和<code>HahsRouter</code>组件，前者使用<code>pushState</code>和<code>popState</code>事件构建路由，后者使用<code>window.location.hash</code>和<code>hashchange</code>事件构建路由。</p>
+<h3 id="react-router-native"><a href="#react-router-native" class="headerlink" title="react-router-native"></a><code>react-router-native</code></h3><p>基于<code>react-router</code>,类似<code>react-router-dom</code>,加入了<code>react-native</code>运行环境下的一些功能。</p>
+<h3 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h3><p><code>react-router-dom</code>依赖<code>react-router</code>，所以我们使用npm安装以来的时候，只需要安装相应环境下的库即可，不用再显式安装<code>react-router</code>。基于浏览器环境下的开发，只需要安装<code>raect-router-dom</code>;基于<code>react-native</code>环境的开发，只需要安装<code>react-router-native</code>。<code>npm</code>会自动解析<code>react-router-dom</code>包中<code>package.json</code>的依赖并安装。</p>
+<h2 id="V4与之前版本路由跳转的区别"><a href="#V4与之前版本路由跳转的区别" class="headerlink" title="V4与之前版本路由跳转的区别"></a>V4与之前版本路由跳转的区别</h2><h3 id="react-router-v4使用history控制路由跳转"><a href="#react-router-v4使用history控制路由跳转" class="headerlink" title="react-router v4使用history控制路由跳转"></a><code>react-router v4使用history控制路由跳转</code></h3><p>在使用<code>react-router v3</code>时候，跳转路由如下：</p>
+<ul>
+<li>从<code>react-router</code>导出<code>browserHistory</code>。</li>
+<li>使用<code>browserHistory.push()</code>等操作路由跳转</li>
+</ul>
+<p>但是在<code>react-router v4</code>中，不提供<code>browserHistory</code>等导出</p>
+<h4 id="推荐使用withRouter"><a href="#推荐使用withRouter" class="headerlink" title="推荐使用withRouter"></a>推荐使用<code>withRouter</code></h4><p><code>withRouter</code>高阶组件，提供了<code>history</code>使用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">import React from &quot;react&quot;;</span><br><span class="line">import &#123;withRouter&#125; from &quot;react-router-dom&quot;;</span><br><span class="line"></span><br><span class="line">class MyComponent extends React.Component &#123;</span><br><span class="line">    ...</span><br><span class="line">    myFunction()&#123;</span><br><span class="line">        this.props.history.push(&quot;&#x2F;some&#x2F;path&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line">export default withRouter(MyComponent)</span><br></pre></td></tr></table></figure>
+
+<h2 id="改版后的react-router-dom路由，需要理解三个概念Router、Route和Link。"><a href="#改版后的react-router-dom路由，需要理解三个概念Router、Route和Link。" class="headerlink" title="改版后的react-router-dom路由，需要理解三个概念Router、Route和Link。"></a>改版后的<code>react-router-dom</code>路由，需要理解三个概念<code>Router</code>、<code>Route</code>和<code>Link</code>。</h2><h3 id="lt-Router-gt"><a href="#lt-Router-gt" class="headerlink" title="&lt;Router&gt;"></a><code>&lt;Router&gt;</code></h3><p><code>&lt;Router&gt;</code>是所有路由组件共用的底层接口，一般我们的应用不会使用这个接口，而是使用高级的路由：</p>
+<ul>
+<li><code>&lt;BrowserRouter&gt;</code>:使用HTML5提供的historyAPI来保持UI和URL的同步；</li>
+<li><code>&lt;HashRouter&gt;</code>:使用URL的hash(例如：<code>window.location.hash</code>)来保持UI和URL同步</li>
+<li><code>&lt;MemoryRouter&gt;</code>：能在内存保存你“URL”的历史记录（并没有对地址栏读写）;</li>
+<li><code>&lt;NativeRouter&gt;</code>：为使用<code>React Native</code>提供路由支持</li>
+<li><code>&lt;StaticRouter&gt;</code>: 从不会改变地址</li>
+</ul>
+<h3 id="lt-Link-gt"><a href="#lt-Link-gt" class="headerlink" title="&lt;Link&gt;"></a><code>&lt;Link&gt;</code></h3><p>Link是react路由中的点击切换到哪一个组件的链接，（这里只素衣不说是页面，而是说组件，因为切换到另一个界面只是展示效果，react的本质还是一个单页面应用-single page application）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">eg:</span><br><span class="line">import &#123; BrowserRouter as Router, Link&#125; from &quot;react-router-dom&quot;;</span><br><span class="line">class Main extends Component&#123;</span><br><span class="line">    render()&#123;</span><br><span class="line">        return(</span><br><span class="line">        &lt;Router&gt;</span><br><span class="line">            &lt;div&gt;</span><br><span class="line">                &lt;ul&gt;</span><br><span class="line">                    &lt;li&gt;&lt;link to&#x3D;&#39;&#x2F;&#39;&gt;首页&lt;&#x2F;Link&gt;&lt;&#x2F;li&gt;</span><br><span class="line">                    &lt;li&gt;&lt;link to&#x3D;&#39;&#x2F;other&#39;&gt;其他页&lt;&#x2F;Link&gt;&lt;&#x2F;li&gt;</span><br><span class="line">                &lt;&#x2F;ul&gt;</span><br><span class="line">            &lt;&#x2F;div&gt;</span><br><span class="line">        &lt;&#x2F;Router&gt;</span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>需要说明的是：</br><br><code>&lt;Router&gt;</code>下面只能包含一个盒子标签，类似这里的div</br><br><code>&lt;Link&gt;</code>代表一个链接，在html界面中会解析成a标签。作为一个链接，必须有一个to属性，代表链接地址。这个链接地址是一个相对路径。</p>
+<h3 id="lt-Route-gt"><a href="#lt-Route-gt" class="headerlink" title="&lt;Route&gt;"></a><code>&lt;Route&gt;</code></h3><ul>
+<li><code>Route</code>代表你的路由界面，<code>path</code>代表路径，<code>component</code>代表路径对应的界面。</li>
+<li>在其<code>path</code>属性与某个<code>location</code>匹配时呈现一些UI</li>
+</ul>
+<h3 id="路由传参"><a href="#路由传参" class="headerlink" title="路由传参"></a>路由传参</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;a&#x2F;1 ---this.props.match.params.id</span><br><span class="line">&#x2F;a?id&#x3D;1---this.props.location.query.id&#96;</span><br></pre></td></tr></table></figure>
+<p>###<br><a href="https://github.com/mrdulin/blog/issues/42">参考链接</a></br><br><a href="https://www.kancloud.cn/chandler/react_handbook/1271261">参考链接1</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/16/Hooks%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -900,214 +1079,11 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/25/Flex%E5%B8%83%E5%B1%80/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Luzy">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Luzy's Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/02/25/Flex%E5%B8%83%E5%B1%80/" class="post-title-link" itemprop="url">Flex布局理解</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/CSS/" itemprop="url" rel="index">
-                    <span itemprop="name">CSS</span>
-                  </a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/CSS/Flex%E5%B8%83%E5%B1%80/" itemprop="url" rel="index">
-                    <span itemprop="name">Flex布局</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="flex语法"><a href="#flex语法" class="headerlink" title="flex语法"></a>flex语法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">flex: [ &lt;&#39;flex-grow&#39;&gt; &lt;&#39;flex-shrink&#39;&gt;? || &lt;&#39;flex-basis&#39;&gt; ];</span><br><span class="line"></span><br><span class="line">flex:auto;</span><br><span class="line"></span><br><span class="line">flex:none;</span><br></pre></td></tr></table></figure>
-<h4 id="语法解析"><a href="#语法解析" class="headerlink" title="语法解析"></a>语法解析</h4><p>CSS语法中的特殊符号的含义绝大多数就是正则表达式中的含义，例如单管道符<code>|</code>,方括号<code>[]</code>,问号<code>?</code>,个数范围花括号<code>{}</code>等。</p>
-<p>首先是单管道符<code>|</code>。表示排他。也就是这个符号前后的属性值都支持的，且不能同时出现。因此下面语法是支持的</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">flex: [ &lt;&#39;flex-grow&#39;&gt; &lt;&#39;flex-shrink&#39;&gt;? || &lt;&#39;flex-basis&#39;&gt; ];</span><br><span class="line"></span><br><span class="line">flex:auto;</span><br><span class="line"></span><br><span class="line">flex:none;</span><br></pre></td></tr></table></figure>
-
-<p>接下来，<code>[...]</code>这一部分。其中方括号<code>[]</code>表示范围。也就是支持的属性值在这个范围内。我们先把方括号<code>[]</code>内其他特殊字符去除，可以得到下面的语法</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">flex: auto;</span><br><span class="line">flex: none;</span><br><span class="line"></span><br><span class="line">flex: [ &lt;&#39;flex-grow&#39;&gt; &lt;&#39;flex-shrink&#39;&gt; &lt;&#39;flex-basis&#39;&gt; ]</span><br></pre></td></tr></table></figure>
-<p>这就是说，flex属性支持空格分隔的3个值，因此，下面的语法都是支持的</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">flex: auto;</span><br><span class="line">flex: none;</span><br><span class="line">&#x2F;* 3个值 *&#x2F;</span><br><span class="line">flex: 1 1 100px;</span><br></pre></td></tr></table></figure>
-
-<p>再看方括号<code>[]</code>内的其他字符，例如问号<code>?</code>,表示0个或1个。也就是<code>flex-shrink</code>属性可有可无。因此，flex属性值也可以是2个值。因此，下面的语法都是支持的</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">flex: auto;</span><br><span class="line">flex: none;</span><br><span class="line">&#x2F;* 2个值 *&#x2F;</span><br><span class="line">flex: 1 100px;</span><br><span class="line">&#x2F;* 3个值 *&#x2F;</span><br><span class="line">flex: 1 1 100px;</span><br></pre></td></tr></table></figure>
-
-<p>最后看双管道符号<code>||</code>,是或者的意思。表示前后可以分开独立合法使用。也就是<code>flex:flex-grow flex-shrink?</code>和<code>flex-basis</code>都是合法的。于是我们又多了2种合法的写法</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">flex:auto;</span><br><span class="line">flex:none;</span><br><span class="line">&#x2F;**1个值，flex-grow**&#x2F;</span><br><span class="line">flex:1;</span><br><span class="line">&#x2F;**1个值,flex-basis**&#x2F;</span><br><span class="line">flex:100px</span><br><span class="line">&#x2F;**2个值，flex-grow和flex-basis**&#x2F;</span><br><span class="line">flex:1 100px</span><br><span class="line">&#x2F;**2个值，flex-grow和flex-shrink**&#x2F;</span><br><span class="line">flex:1 1;</span><br><span class="line">&#x2F;**3个值**&#x2F;</span><br><span class="line">flex:1 1 100px</span><br></pre></td></tr></table></figure>
-
-<h3 id="flex-grow"><a href="#flex-grow" class="headerlink" title="flex-grow"></a>flex-grow</h3><p>指定了容器剩余空间<strong>多余</strong>时候的分配规则。默认值是<code>0</code>,多余空间不分配</br></p>
-<p>如果所有项目的<code>flex-grow</code>属性都为1，则它们将等分剩余空间（如果有的话）。如果一个项目的<code>flex-grow</code>属性为2，其他项目都为1，则前者占据的剩余空间将比其他项多一倍。</p>
-<h3 id="flex-shrink"><a href="#flex-shrink" class="headerlink" title="flex-shrink"></a>flex-shrink</h3><p>制定了容器剩余空间不足的时候的分配规则，默认值是<code>1</code>,空间不足要分配。</p>
-<p>如果所有的项目<code>flex-shrink</code>属性为1，当空间不足时，都将等比例缩小。如果一个项目的<code>flex-shrink</code>属性为0，其他项目都为1，则空间不足时，前者不缩小。</p>
-<h3 id="flex-basis"><a href="#flex-basis" class="headerlink" title="flex-basis"></a>flex-basis</h3><p>指定了固定的分配数量</p>
-<p><strong>浏览器根据这个属性，计算主轴是否有多余空间。它默认值为<code>auto</code>，即项目的本来大小</strong></p>
-<p>它可以设为跟<code>width</code>或<code>height</code>属性一样的值，则项目将占据固定空间</p>
-<h3 id="flex的几个简写"><a href="#flex的几个简写" class="headerlink" title="flex的几个简写"></a>flex的几个简写</h3><ul>
-<li>flex:1</br><br><code>flex: 1 1 0</code></li>
-<li>flex:auto</br><br><code>flex:1 1 auto</code></li>
-<li>flex:initial</br><br><code>flex:0 1 auto</code></li>
-<li>flex:none<br><code>flex:0 0 auto</code></li>
-</ul>
-<p><a href="https://www.ruanyifeng.com/blog/2015/07/flex-grammar.html">参考链接1</a></p>
-<p><a href="http://www.ayqy.net/blog/flexbox%E5%B8%83%E5%B1%80%E6%8C%87%E5%8D%97/">参考链接2</a></p>
-<p><a href="https://www.zhangxinxu.com/wordpress/2019/12/css-flex-deep/">参考链接3</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/20/SSR%E6%8C%87%E5%8D%97/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Luzy">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Luzy's Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/02/20/SSR%E6%8C%87%E5%8D%97/" class="post-title-link" itemprop="url">SSR指南</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Vue/" itemprop="url" rel="index">
-                    <span itemprop="name">Vue</span>
-                  </a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Vue/SSR%E6%8C%87%E5%8D%97/" itemprop="url" rel="index">
-                    <span itemprop="name">SSR指南</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="SSR的作用"><a href="#SSR的作用" class="headerlink" title="SSR的作用"></a>SSR的作用</h3><ul>
-<li>seo问题，有利于搜索引擎蜘蛛抓取网站内容，利于网站的收录和排名</li>
-<li>首屏加载过慢的问题，例如现在成熟的SPA项目中，打开首页需要加载很多资源，通过服务端渲染可以加速首屏渲染。</li>
-</ul>
-<p>首屏的渲染是node发送过来的html字符串，并不依赖于js文件了，这就会使用户更快的看到页面的内容。</p>
-<h3 id="实战demo"><a href="#实战demo" class="headerlink" title="实战demo"></a>实战demo</h3><p><a href="https://github.com/lzyup/vue-ssr">源码地址</a></p>
-<h3 id="一、-简单的前端渲染demo-纯展示"><a href="#一、-简单的前端渲染demo-纯展示" class="headerlink" title="一、 简单的前端渲染demo(纯展示)"></a>一、 简单的前端渲染demo(纯展示)</h3><p>这个比较简单就直接上效果图了</p>
-<p><img src="https://raw.githubusercontent.com/lzyup/vue-ssr/master/demo1/images/demo1.jpg" alt="效果图"></p>
-<h3 id="二、后端渲染（纯展示）"><a href="#二、后端渲染（纯展示）" class="headerlink" title="二、后端渲染（纯展示）"></a>二、后端渲染（纯展示）</h3><h4 id="1、区分入口entry-js"><a href="#1、区分入口entry-js" class="headerlink" title="1、区分入口entry.js"></a>1、区分入口entry.js</h4><h4 id="main-js"><a href="#main-js" class="headerlink" title="main.js"></a><code>main.js</code></br></h4><p>这是应用的通用<code>entry</code>。作用是使用<code>export</code>导出一个<code>createApp</code>函数</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">const Vue &#x3D; require(&#39;vue&#39;);</span><br><span class="line">const App &#x3D; require(&#39;.&#x2F;App.vue&#39;).default;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;导出一个工厂函数，用于创建新的</span><br><span class="line">&#x2F;&#x2F;应用程序、router和store实例</span><br><span class="line">function createApp()&#123;</span><br><span class="line">    const app &#x3D; new Vue(&#123;</span><br><span class="line">        render: h &#x3D;&gt; h(App)</span><br><span class="line">    &#125;)</span><br><span class="line">    return app;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">module.exports &#x3D; createApp;</span><br></pre></td></tr></table></figure>
-
-<h4 id="entry-client-js"><a href="#entry-client-js" class="headerlink" title="entry-client.js"></a><code>entry-client.js</code></br></h4><p>客户端创建应用并挂载到DOM上</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const createApp &#x3D; require(&#39;.&#x2F;main&#39;)</span><br><span class="line">const app &#x3D; createApp();</span><br><span class="line">app.$mount(&#39;#app&#39;);</span><br></pre></td></tr></table></figure>
-
-<h4 id="entry-server-js"><a href="#entry-server-js" class="headerlink" title="entry-server.js"></a><code>entry-server.js</code></br></h4><p>服务器entry使用工厂函数创建的实例，在每次渲染中重复调用此函数。此时，除了创建和返回应用程序实例之外，它不会做太多的事情。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">const createApp &#x3D; require(&#39;.&#x2F;main.js&#39;);</span><br><span class="line">module.exports &#x3D; createApp;</span><br></pre></td></tr></table></figure>
-
-<h4 id="2、区分webpack打包配置"><a href="#2、区分webpack打包配置" class="headerlink" title="2、区分webpack打包配置"></a>2、区分<code>webpack</code>打包配置</h4><p>分为三个配置文件：base,client和server。基本配置(base config)包含两个环境共享的配置，例如：输出路径(output path),别名(alias)和loader。服务器配置(server config)和客户端配置(client config)，可以通过使用<code>webpack-merge</code>来简单地扩展基本配置。</p>
-<p>这里只贴出服务端配置</p>
-<h4 id="服务器配置-Server-Config"><a href="#服务器配置-Server-Config" class="headerlink" title="服务器配置(Server Config)"></a>服务器配置(Server Config)</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">const merge &#x3D; require(&#39;webpack-merge&#39;);</span><br><span class="line">const base &#x3D; require(&#39;.&#x2F;webpack.base.conf&#39;);</span><br><span class="line">const HtmlWebpackPlugin &#x3D; require(&#39;html-webpack-plugin&#39;);</span><br><span class="line"></span><br><span class="line">module.exports &#x3D; merge(base,&#123;</span><br><span class="line">    &#x2F;&#x2F;指定Node环境，避免非Node环境API报错</span><br><span class="line">    target:&#39;node&#39;,</span><br><span class="line">    entry:&#123;</span><br><span class="line">        server:&#39;.&#x2F;entry-server.js&#39;</span><br><span class="line">    &#125;,</span><br><span class="line">    output:&#123;</span><br><span class="line">        filename:&#39;[name].js&#39;,</span><br><span class="line">        &#x2F;&#x2F;此处告知 server bundel使用Node风格导出模块</span><br><span class="line">        libraryTarget:&#39;commonjs2&#39;</span><br><span class="line">    &#125;,</span><br><span class="line">    plugins:[</span><br><span class="line">        new HtmlWebpackPlugin(&#123;</span><br><span class="line">            template:&#39;.&#x2F;index.ssr.html&#39;,</span><br><span class="line">            filename:&#39;index.ssr.html&#39;,</span><br><span class="line">            files:&#123;</span><br><span class="line">                js:&#39;client.js&#39;</span><br><span class="line">            &#125;,</span><br><span class="line">            excludeChunks:[&#39;server&#39;]</span><br><span class="line">        &#125;)</span><br><span class="line">    ]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://raw.githubusercontent.com/lzyup/vue-ssr/master/demo2/images/demo2.jpg" alt="效果图"></p>
-<h4 id="3、服务端渲染逻辑"><a href="#3、服务端渲染逻辑" class="headerlink" title="3、服务端渲染逻辑"></a>3、服务端渲染逻辑</h4><p><code>vue-server-render</code>提供一个<code>createBundleRenderer</code>的API，支持热重载（支持更新后的server的bundle文件，然后重新创建renderer实例）</br><br>相关逻辑代码如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">const bundle &#x3D; fs.readFileSync(path.resolve(__dirname,&#39;dist&#x2F;server.js&#39;),&#39;utf-8&#39;);</span><br><span class="line">const renderer &#x3D; require(&#39;vue-server-renderer&#39;).createBundleRenderer(bundle,&#123;</span><br><span class="line">    template:fs.readFileSync(path.resolve(__dirname,&#39;dist&#x2F;index.ssr.html&#39;),&#39;utf-8&#39;)</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">server.get(&#39;&#x2F;index&#39;,(req,res)&#x3D;&gt;&#123;</span><br><span class="line">    &#x2F;&#x2F; const app &#x3D; createApp();</span><br><span class="line">    const context &#x3D; &#123;url:req.url&#125;</span><br><span class="line">    &#x2F;&#x2F;这里无需传入一个应用程序，因为在执行bundle时已经自动创建过了</span><br><span class="line">    renderer.renderToString(context,(err,html)&#x3D;&gt;&#123;</span><br><span class="line">        if(err)&#123;</span><br><span class="line">            console.error(err);</span><br><span class="line">            res.status(500).end(&#39;服务器内部错误&#39;)</span><br><span class="line">            return;</span><br><span class="line">        &#125; </span><br><span class="line">        res.end(html)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>bundleRender在调用<code>renderToString</code>时，会自动执行「由bundle创建的应用程序实例」所导出的函数（传入上下文作为参数），然后渲染它。</p>
-<h3 id="三、后端渲染（包含网络请求数据）"><a href="#三、后端渲染（包含网络请求数据）" class="headerlink" title="三、后端渲染（包含网络请求数据）"></a>三、后端渲染（包含网络请求数据）</h3><h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><ul>
-<li>在渲染之前，预先获取所有的网络数据，然后存储到Vuex的Store中</li>
-<li>后端渲染的时候，通过Vuex将获取到的网络数据分别注入到各个组件中</li>
-<li>将全部网络数据埋在<code>window.INITIAL_STATE</code>中，通过HTML传递到浏览器端</li>
-<li>浏览器端通过Vuex将<code>window.INITIAL_STATE</code>里面的网络数据分别注入到各个组件</li>
-</ul>
-<h4 id="配置带逻辑的组件"><a href="#配置带逻辑的组件" class="headerlink" title="配置带逻辑的组件"></a>配置带逻辑的组件</h4><p>在组件上暴露一个自定义静态函数<code>asyncData</code>。需要注意的是，此函数会在组件实例化之前调用，所以它无法访问<code>this</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; store.js</span><br><span class="line">import Vue from &#39;vue&#39;</span><br><span class="line">import Vuex from &#39;vuex&#39;</span><br><span class="line"></span><br><span class="line">Vue.use(Vuex)</span><br><span class="line"></span><br><span class="line">function fetchBar()&#123;</span><br><span class="line">    return new Promise(function (resolve,reject) &#123;</span><br><span class="line">        resolve(&#39;bar ajax 返回数据&#39;)</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function fetchFoo() &#123;</span><br><span class="line">    return new Promise(function (resolve, reject) &#123;</span><br><span class="line">        resolve(&#39;foo ajax 返回数据&#39;);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export default function createStore()&#123;</span><br><span class="line">    return new Vuex.Store(&#123;</span><br><span class="line">        state:&#123;</span><br><span class="line">            bar:&#39;&#39;,</span><br><span class="line">            foo:&#39;&#39;</span><br><span class="line">        &#125;,</span><br><span class="line">        actions:&#123;</span><br><span class="line">            fetchBar(&#123;commit&#125;)&#123;</span><br><span class="line">                return fetchBar().then(msg&#x3D;&gt;&#123;</span><br><span class="line">                    commit(&#39;setBar&#39;,&#123;msg&#125;);</span><br><span class="line">                &#125;)</span><br><span class="line">            &#125;,</span><br><span class="line">            fetchFoo(&#123; commit &#125;) &#123;</span><br><span class="line">                return fetchFoo().then(msg &#x3D;&gt; &#123;</span><br><span class="line">                    commit(&#39;setFoo&#39;, &#123; msg &#125;)</span><br><span class="line">                &#125;)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        mutations:&#123;</span><br><span class="line">            setBar(state,&#123;msg&#125;)&#123;</span><br><span class="line">                Vue.set(state,&#39;bar&#39;,msg);</span><br><span class="line">            &#125;,</span><br><span class="line">            setFoo(state,&#123;msg&#125;)&#123;</span><br><span class="line">                Vue.set(state,&#39;foo&#39;,msg);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; Bar.vue</span><br><span class="line"></span><br><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;div class&#x3D;&quot;bar&quot;&gt;</span><br><span class="line">        &lt;h1&gt;Bar&lt;&#x2F;h1&gt;</span><br><span class="line">        &lt;p&gt;ajax数据：&#123;&#123;bar&#125;&#125;&lt;&#x2F;p&gt;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">    asyncData(&#123;store&#125;)&#123;</span><br><span class="line">        return store.dispatch(&#39;fetchBar&#39;)</span><br><span class="line">    &#125;,</span><br><span class="line">    computed:&#123;</span><br><span class="line">        bar()&#123;</span><br><span class="line">            return this.$store.state.bar</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    created()&#123;</span><br><span class="line">        console.log(&#39;bar created&#39;)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style&gt;</span><br><span class="line">    .bar&#123;</span><br><span class="line">        background:#9e9ecd</span><br><span class="line">    &#125;</span><br><span class="line">&lt;&#x2F;style&gt;</span><br></pre></td></tr></table></figure>
-
-<h4 id="如何在渲染前预获取所有网络数据"><a href="#如何在渲染前预获取所有网络数据" class="headerlink" title="如何在渲染前预获取所有网络数据"></a>如何在渲染前预获取所有网络数据</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;entry-server.js</span><br><span class="line"></span><br><span class="line">import Vue from &#39;vue&#39;;</span><br><span class="line">import App from &#39;.&#x2F;App.vue&#39;;</span><br><span class="line">import createStore from &#39;.&#x2F;store&#39;;</span><br><span class="line"></span><br><span class="line">export default function(context)&#123;</span><br><span class="line">    &#x2F;&#x2F;context 是 vue-server-render注入参数</span><br><span class="line">    const store &#x3D; createStore();</span><br><span class="line">    let app &#x3D; new Vue(&#123;</span><br><span class="line">        store,</span><br><span class="line">        render:h&#x3D;&gt;h(App)</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F;找到所有prefetchData方法</span><br><span class="line">    let components &#x3D; App.components;</span><br><span class="line">    let prefetchFns &#x3D; [];</span><br><span class="line">    for(let key in components)&#123;</span><br><span class="line">        if(!components.hasOwnProperty(key)) continue;</span><br><span class="line">        let component &#x3D; components[key];</span><br><span class="line">        if(component.asyncData)&#123;</span><br><span class="line">            prefetchFns.push(component.asyncData(&#123;</span><br><span class="line">                store</span><br><span class="line">            &#125;))</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    return Promise.all(prefetchFns).then((res)&#x3D;&gt;&#123;</span><br><span class="line">        &#x2F;&#x2F;在所有组件的Ajax都返回之后，才最终返回app进行渲染</span><br><span class="line">        context.state &#x3D; store.state;</span><br><span class="line">        &#x2F;&#x2F;context.state 赋值成什么，windwo.__INITIAL_STATE__就是什么</span><br><span class="line">        return app;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="为何还需要将网络请求得到的数据通过window-INITIAL-STATE传递到前端？"><a href="#为何还需要将网络请求得到的数据通过window-INITIAL-STATE传递到前端？" class="headerlink" title="为何还需要将网络请求得到的数据通过window.INITIAL_STATE传递到前端？"></a>为何还需要将网络请求得到的数据通过<code>window.INITIAL_STATE</code>传递到前端？</h4><p>可以看到我们打包出来的<code>dist</code>目录下的<code>index.ssr.html</code>文件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;div id&#x3D;&quot;app&quot;&gt;</span><br><span class="line">        &lt;!--vue-ssr-outlet--&gt;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">    &lt;script type&#x3D;&quot;text&#x2F;javascript&quot; src&#x3D;&quot;client.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&lt;&#x2F;body&gt;</span><br></pre></td></tr></table></figure>
-<p>注意到引入的<code>script</code>是<code>client.js</code>接管浏览器端的后续操作；而且客户端和浏览器也是通过工厂函数分别创建的<code>vue实例</code>和<code>store实例</code>，数据也是互不干扰的。浏览器中后续的操作是<code>client.js</code>来接管的，因此需要把网络数据写入<code>window.INITIAL_STATE</code>中，使<code>client.js</code>保持同样一份数据。</p>
-<h4 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h4><p><a href="https://github.com/youngwind/blog/issues/112">link1</a></br><br><a href="https://segmentfault.com/a/1190000016637877#item-2-1">link2</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1173,14 +1149,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">19</span>
+          <span class="site-state-item-count">21</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-count">21</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
   </nav>

@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('http://yoursite.com').hostname,
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.7.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="场景123456&#x2F;&#x2F;写法一import &amp;#123;Switch,Route,Router,HashHistory,Link&amp;#125; from &#39;react-router-dom&#39;&#x2F;&#x2F;写法二import &amp;#123;Switch,Route,Router&amp;#125; from &#39;react-router&#39;import &amp;#">
+<meta property="og:type" content="article">
+<meta property="og:title" content="React Router相关概念">
+<meta property="og:url" content="http://yoursite.com/2020/07/05/React-router%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5/index.html">
+<meta property="og:site_name" content="Luzy&#39;s Blog">
+<meta property="og:description" content="场景123456&#x2F;&#x2F;写法一import &amp;#123;Switch,Route,Router,HashHistory,Link&amp;#125; from &#39;react-router-dom&#39;&#x2F;&#x2F;写法二import &amp;#123;Switch,Route,Router&amp;#125; from &#39;react-router&#39;import &amp;#">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-07-05T10:07:03.712Z">
+<meta property="article:modified_time" content="2020-07-05T10:08:12.896Z">
+<meta property="article:author" content="Luzy">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/2020/07/05/React-router%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>React Router相关概念 | Luzy's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Luzy's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/05/React-router%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Luzy">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Luzy's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          React Router相关概念
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/React/" itemprop="url" rel="index">
+                    <span itemprop="name">React</span>
+                  </a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/React/Router/" itemprop="url" rel="index">
+                    <span itemprop="name">Router</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;写法一</span><br><span class="line">import &#123;Switch,Route,Router,HashHistory,Link&#125; from &#39;react-router-dom&#39;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;写法二</span><br><span class="line">import &#123;Switch,Route,Router&#125; from &#39;react-router&#39;</span><br><span class="line">import &#123;HashHistory,Link&#125; from &#39;react-router-dom&#39;</span><br></pre></td></tr></table></figure>
+
+<h2 id="react-router-react-router-dom和react-router-native"><a href="#react-router-react-router-dom和react-router-native" class="headerlink" title="react-router,react-router-dom和react-router-native"></a><code>react-router</code>,<code>react-router-dom</code>和<code>react-router-native</code></h2><h3 id="react-router"><a href="#react-router" class="headerlink" title="react-router"></a><code>react-router</code></h3><p>提供了一些router的核心api,包括<code>Router</code>,<code>Route</code>,<code>Switch</code>等，但是它没有提供dom操作进行跳转的api,<strong>服务器端渲染</strong>正好可以。</p>
+<h3 id="react-router-dom"><a href="#react-router-dom" class="headerlink" title="react-router-dom"></a><code>react-router-dom</code></h3><p>基于<code>react-router</code>，加入了在浏览器运行环境下的一些功能，我们可以通过dom的事件控制路由。例如<code>Link</code>组件，会渲染一个<code>a</code>标签；<code>BrowserRouter</code>和<code>HahsRouter</code>组件，前者使用<code>pushState</code>和<code>popState</code>事件构建路由，后者使用<code>window.location.hash</code>和<code>hashchange</code>事件构建路由。</p>
+<h3 id="react-router-native"><a href="#react-router-native" class="headerlink" title="react-router-native"></a><code>react-router-native</code></h3><p>基于<code>react-router</code>,类似<code>react-router-dom</code>,加入了<code>react-native</code>运行环境下的一些功能。</p>
+<h3 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h3><p><code>react-router-dom</code>依赖<code>react-router</code>，所以我们使用npm安装以来的时候，只需要安装相应环境下的库即可，不用再显式安装<code>react-router</code>。基于浏览器环境下的开发，只需要安装<code>raect-router-dom</code>;基于<code>react-native</code>环境的开发，只需要安装<code>react-router-native</code>。<code>npm</code>会自动解析<code>react-router-dom</code>包中<code>package.json</code>的依赖并安装。</p>
+<h2 id="V4与之前版本路由跳转的区别"><a href="#V4与之前版本路由跳转的区别" class="headerlink" title="V4与之前版本路由跳转的区别"></a>V4与之前版本路由跳转的区别</h2><h3 id="react-router-v4使用history控制路由跳转"><a href="#react-router-v4使用history控制路由跳转" class="headerlink" title="react-router v4使用history控制路由跳转"></a><code>react-router v4使用history控制路由跳转</code></h3><p>在使用<code>react-router v3</code>时候，跳转路由如下：</p>
+<ul>
+<li>从<code>react-router</code>导出<code>browserHistory</code>。</li>
+<li>使用<code>browserHistory.push()</code>等操作路由跳转</li>
+</ul>
+<p>但是在<code>react-router v4</code>中，不提供<code>browserHistory</code>等导出</p>
+<h4 id="推荐使用withRouter"><a href="#推荐使用withRouter" class="headerlink" title="推荐使用withRouter"></a>推荐使用<code>withRouter</code></h4><p><code>withRouter</code>高阶组件，提供了<code>history</code>使用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">import React from &quot;react&quot;;</span><br><span class="line">import &#123;withRouter&#125; from &quot;react-router-dom&quot;;</span><br><span class="line"></span><br><span class="line">class MyComponent extends React.Component &#123;</span><br><span class="line">    ...</span><br><span class="line">    myFunction()&#123;</span><br><span class="line">        this.props.history.push(&quot;&#x2F;some&#x2F;path&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line">export default withRouter(MyComponent)</span><br></pre></td></tr></table></figure>
+
+<h2 id="改版后的react-router-dom路由，需要理解三个概念Router、Route和Link。"><a href="#改版后的react-router-dom路由，需要理解三个概念Router、Route和Link。" class="headerlink" title="改版后的react-router-dom路由，需要理解三个概念Router、Route和Link。"></a>改版后的<code>react-router-dom</code>路由，需要理解三个概念<code>Router</code>、<code>Route</code>和<code>Link</code>。</h2><h3 id="lt-Router-gt"><a href="#lt-Router-gt" class="headerlink" title="&lt;Router&gt;"></a><code>&lt;Router&gt;</code></h3><p><code>&lt;Router&gt;</code>是所有路由组件共用的底层接口，一般我们的应用不会使用这个接口，而是使用高级的路由：</p>
+<ul>
+<li><code>&lt;BrowserRouter&gt;</code>:使用HTML5提供的historyAPI来保持UI和URL的同步；</li>
+<li><code>&lt;HashRouter&gt;</code>:使用URL的hash(例如：<code>window.location.hash</code>)来保持UI和URL同步</li>
+<li><code>&lt;MemoryRouter&gt;</code>：能在内存保存你“URL”的历史记录（并没有对地址栏读写）;</li>
+<li><code>&lt;NativeRouter&gt;</code>：为使用<code>React Native</code>提供路由支持</li>
+<li><code>&lt;StaticRouter&gt;</code>: 从不会改变地址</li>
+</ul>
+<h3 id="lt-Link-gt"><a href="#lt-Link-gt" class="headerlink" title="&lt;Link&gt;"></a><code>&lt;Link&gt;</code></h3><p>Link是react路由中的点击切换到哪一个组件的链接，（这里只素衣不说是页面，而是说组件，因为切换到另一个界面只是展示效果，react的本质还是一个单页面应用-single page application）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">eg:</span><br><span class="line">import &#123; BrowserRouter as Router, Link&#125; from &quot;react-router-dom&quot;;</span><br><span class="line">class Main extends Component&#123;</span><br><span class="line">    render()&#123;</span><br><span class="line">        return(</span><br><span class="line">        &lt;Router&gt;</span><br><span class="line">            &lt;div&gt;</span><br><span class="line">                &lt;ul&gt;</span><br><span class="line">                    &lt;li&gt;&lt;link to&#x3D;&#39;&#x2F;&#39;&gt;首页&lt;&#x2F;Link&gt;&lt;&#x2F;li&gt;</span><br><span class="line">                    &lt;li&gt;&lt;link to&#x3D;&#39;&#x2F;other&#39;&gt;其他页&lt;&#x2F;Link&gt;&lt;&#x2F;li&gt;</span><br><span class="line">                &lt;&#x2F;ul&gt;</span><br><span class="line">            &lt;&#x2F;div&gt;</span><br><span class="line">        &lt;&#x2F;Router&gt;</span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>需要说明的是：</br><br><code>&lt;Router&gt;</code>下面只能包含一个盒子标签，类似这里的div</br><br><code>&lt;Link&gt;</code>代表一个链接，在html界面中会解析成a标签。作为一个链接，必须有一个to属性，代表链接地址。这个链接地址是一个相对路径。</p>
+<h3 id="lt-Route-gt"><a href="#lt-Route-gt" class="headerlink" title="&lt;Route&gt;"></a><code>&lt;Route&gt;</code></h3><ul>
+<li><code>Route</code>代表你的路由界面，<code>path</code>代表路径，<code>component</code>代表路径对应的界面。</li>
+<li>在其<code>path</code>属性与某个<code>location</code>匹配时呈现一些UI</li>
+</ul>
+<h3 id="路由传参"><a href="#路由传参" class="headerlink" title="路由传参"></a>路由传参</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;a&#x2F;1 ---this.props.match.params.id</span><br><span class="line">&#x2F;a?id&#x3D;1---this.props.location.query.id&#96;</span><br></pre></td></tr></table></figure>
+<p>###<br><a href="https://github.com/mrdulin/blog/issues/42">参考链接</a></br><br><a href="https://www.kancloud.cn/chandler/react_handbook/1271261">参考链接1</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/05/16/Hooks%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95/" rel="prev" title="Hooks基本用法">
+      <i class="fa fa-chevron-left"></i> Hooks基本用法
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/07/05/withRouter%E4%BD%BF%E7%94%A8/" rel="next" title="withRouter使用">
+      withRouter使用 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#场景"><span class="nav-number">1.</span> <span class="nav-text">场景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#react-router-react-router-dom和react-router-native"><span class="nav-number">2.</span> <span class="nav-text">react-router,react-router-dom和react-router-native</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#react-router"><span class="nav-number">2.1.</span> <span class="nav-text">react-router</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#react-router-dom"><span class="nav-number">2.2.</span> <span class="nav-text">react-router-dom</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#react-router-native"><span class="nav-number">2.3.</span> <span class="nav-text">react-router-native</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#结论"><span class="nav-number">2.4.</span> <span class="nav-text">结论</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#V4与之前版本路由跳转的区别"><span class="nav-number">3.</span> <span class="nav-text">V4与之前版本路由跳转的区别</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#react-router-v4使用history控制路由跳转"><span class="nav-number">3.1.</span> <span class="nav-text">react-router v4使用history控制路由跳转</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#推荐使用withRouter"><span class="nav-number">3.1.1.</span> <span class="nav-text">推荐使用withRouter</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#改版后的react-router-dom路由，需要理解三个概念Router、Route和Link。"><span class="nav-number">4.</span> <span class="nav-text">改版后的react-router-dom路由，需要理解三个概念Router、Route和Link。</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#lt-Router-gt"><span class="nav-number">4.1.</span> <span class="nav-text">&lt;Router&gt;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#lt-Link-gt"><span class="nav-number">4.2.</span> <span class="nav-text">&lt;Link&gt;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#lt-Route-gt"><span class="nav-number">4.3.</span> <span class="nav-text">&lt;Route&gt;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#路由传参"><span class="nav-number">4.4.</span> <span class="nav-text">路由传参</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Luzy</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">21</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Luzy</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

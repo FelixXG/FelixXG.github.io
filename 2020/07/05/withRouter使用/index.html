@@ -46,15 +46,19 @@
   };
 </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Luzy&#39;s Blog">
-<meta property="og:url" content="http://yoursite.com/archives/2020/01/index.html">
+  <meta name="description" content="作用withRouter是react-route的一个高阶组件，可获取history render时会把match,location和history传入props history action可得知路由栈的操作是POP、PUSH、REPLACElocation pathname当前路由的绝对路径 search查询参数，访问&#x2F;user?userId&#x3D;123&#x3D;&gt;可以拿到?userId&#x3D;123 h">
+<meta property="og:type" content="article">
+<meta property="og:title" content="withRouter使用">
+<meta property="og:url" content="http://yoursite.com/2020/07/05/withRouter%E4%BD%BF%E7%94%A8/index.html">
 <meta property="og:site_name" content="Luzy&#39;s Blog">
+<meta property="og:description" content="作用withRouter是react-route的一个高阶组件，可获取history render时会把match,location和history传入props history action可得知路由栈的操作是POP、PUSH、REPLACElocation pathname当前路由的绝对路径 search查询参数，访问&#x2F;user?userId&#x3D;123&#x3D;&gt;可以拿到?userId&#x3D;123 h">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-07-05T10:08:45.943Z">
+<meta property="article:modified_time" content="2020-07-05T10:09:18.396Z">
 <meta property="article:author" content="Luzy">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://yoursite.com/archives/2020/01/">
+<link rel="canonical" href="http://yoursite.com/2020/07/05/withRouter%E4%BD%BF%E7%94%A8/">
 
 
 <script id="page-configurations">
@@ -62,11 +66,11 @@
   CONFIG.page = {
     sidebar: "",
     isHome: false,
-    isPost: false
+    isPost: true
   };
 </script>
 
-  <title>归档 | Luzy's Blog</title>
+  <title>withRouter使用 | Luzy's Blog</title>
   
 
 
@@ -165,129 +169,100 @@
           <div class="content">
             
 
+  <div class="posts-expand">
+      
   
   
-  
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        <span class="collection-header">嗯..! 目前共计 21 篇日志。 继续努力。</span>
-      </div>
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/05/withRouter%E4%BD%BF%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Luzy">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Luzy's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          withRouter使用
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/React/" itemprop="url" rel="index">
+                    <span itemprop="name">React</span>
+                  </a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/React/Router/" itemprop="url" rel="index">
+                    <span itemprop="name">Router</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <h1 class="collection-header">2020</h1>
-    </div>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-01-28T18:21:36+08:00"
-              content="2020-01-28">
-          01-28
-        </time>
-      </div>
-
-      <h2 class="post-title">
-          <a class="post-title-link" href="/2020/01/28/%E7%BB%A7%E6%89%BF/" itemprop="url">
-            <span itemprop="name">继承</span>
-          </a>
-      </h2>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-01-20T10:57:20+08:00"
-              content="2020-01-20">
-          01-20
-        </time>
-      </div>
-
-      <h2 class="post-title">
-          <a class="post-title-link" href="/2020/01/20/vuerouter%E7%9A%84%E4%B8%A4%E7%A7%8D%E6%A8%A1%E5%BC%8F/" itemprop="url">
-            <span itemprop="name">VueRouter的两种模式</span>
-          </a>
-      </h2>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-01-20T10:49:09+08:00"
-              content="2020-01-20">
-          01-20
-        </time>
-      </div>
-
-      <h2 class="post-title">
-          <a class="post-title-link" href="/2020/01/20/history/" itemprop="url">
-            <span itemprop="name">history</span>
-          </a>
-      </h2>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-01-19T09:46:03+08:00"
-              content="2020-01-19">
-          01-19
-        </time>
-      </div>
-
-      <h2 class="post-title">
-          <a class="post-title-link" href="/2020/01/19/new%E7%9A%84%E7%90%86%E8%A7%A3%E5%92%8C%E5%AE%9E%E7%8E%B0/" itemprop="url">
-            <span itemprop="name">new的理解和实现</span>
-          </a>
-      </h2>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-01-18T16:44:08+08:00"
-              content="2020-01-18">
-          01-18
-        </time>
-      </div>
-
-      <h2 class="post-title">
-          <a class="post-title-link" href="/2020/01/18/Git%E7%9A%84%E5%B8%B8%E8%A7%84%E6%93%8D%E4%BD%9C/" itemprop="url">
-            <span itemprop="name">Git的常规操作</span>
-          </a>
-      </h2>
-
-    </header>
-  </article>
-
+        <h2 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h2><p>withRouter是react-route的一个高阶组件，可获取history</p>
+<p>render时会把match,location和history传入props</p>
+<h3 id="history"><a href="#history" class="headerlink" title="history"></a><code>history</code></h3><ul>
+<li><code>action</code></br><br>可得知路由栈的操作是<code>POP</code>、<code>PUSH</code>、<code>REPLACE</code><h3 id="location"><a href="#location" class="headerlink" title="location"></a><code>location</code></br></h3><ul>
+<li><code>pathname</code>当前路由的绝对路径</li>
+<li><code>search</code>查询参数，访问<code>/user?userId=123</code>=&gt;可以拿到<code>?userId=123</code></li>
+<li><code>hash</code>:<code>#the-hash</code></li>
+<li><code>state</code>:类似vue的路由元信息<code>meta</code>,在这里的存储的信息不会明文显示在浏览器上</li>
+</ul>
+</li>
+</ul>
+<h3 id="match"><a href="#match" class="headerlink" title="match"></a><code>match</code></br></h3><pre><code>- `params`当`&lt;Route to=&apos;/user/:id&apos; component={user}&gt;`,访问`/user/123`在`user`组件中。`this.props.match.params.id`可以获取id
+- `isExact`,当前路由是不是完全匹配</code></pre><h2 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h2><p>路由组件是可以直接获取这些属性（<code>history</code>、<code>location</code>,<code>match</code>）,而非路由组件就必须通过<code>withRouter</code>修饰后才能获取这些属性。<br>例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;Route path&#x3D;&#39;&#x2F;&#39; component&#x3D;&#123;App&#125; &#x2F;&gt;</span><br></pre></td></tr></table></figure>
+<p>App组件就可以直接获取路由中这些属性，但是，如果App组件汇总有一个子组件<code>Foo</code>，那么<code>Foo</code>就不能直接获取路由中的属性了，必须通过<code>withRouter</code>修饰后才能获取到</p>
 
     </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/07/05/React-router%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5/" rel="prev" title="React Router相关概念">
+      <i class="fa fa-chevron-left"></i> React Router相关概念
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
   </div>
-  
-  
-  
-
-  
-
 
 
           </div>
@@ -338,6 +313,9 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#作用"><span class="nav-number">1.</span> <span class="nav-text">作用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#history"><span class="nav-number">1.1.</span> <span class="nav-text">history</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#location"><span class="nav-number">1.2.</span> <span class="nav-text">location
+</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#match"><span class="nav-number">1.3.</span> <span class="nav-text">match
+</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用场景"><span class="nav-number">2.</span> <span class="nav-text">使用场景</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
