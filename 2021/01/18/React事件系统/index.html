@@ -46,15 +46,19 @@
   };
 </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Luzy&#39;s Blog">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+  <meta name="description" content="引言1React组件绑定事件本质上是代理到document上。  React合成事件在React中，通过React绑定的事件，其回调函数中的event对象，是经过React合成的SyntheticEvent,与原生的DOM事件的event不是一回事。 因此，React合成事件对象的e.stopPropagation，只能阻止React模拟的事件冒泡，并不能阻止真实的DOM事件冒泡，更加不能阻止已经">
+<meta property="og:type" content="article">
+<meta property="og:title" content="React事件系统">
+<meta property="og:url" content="http://yoursite.com/2021/01/18/React%E4%BA%8B%E4%BB%B6%E7%B3%BB%E7%BB%9F/index.html">
 <meta property="og:site_name" content="Luzy&#39;s Blog">
+<meta property="og:description" content="引言1React组件绑定事件本质上是代理到document上。  React合成事件在React中，通过React绑定的事件，其回调函数中的event对象，是经过React合成的SyntheticEvent,与原生的DOM事件的event不是一回事。 因此，React合成事件对象的e.stopPropagation，只能阻止React模拟的事件冒泡，并不能阻止真实的DOM事件冒泡，更加不能阻止已经">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-01-18T14:52:01.068Z">
+<meta property="article:modified_time" content="2021-01-18T14:55:44.401Z">
 <meta property="article:author" content="Luzy">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://yoursite.com/archives/">
+<link rel="canonical" href="http://yoursite.com/2021/01/18/React%E4%BA%8B%E4%BB%B6%E7%B3%BB%E7%BB%9F/">
 
 
 <script id="page-configurations">
@@ -62,11 +66,11 @@
   CONFIG.page = {
     sidebar: "",
     isHome: false,
-    isPost: false
+    isPost: true
   };
 </script>
 
-  <title>归档 | Luzy's Blog</title>
+  <title>React事件系统 | Luzy's Blog</title>
   
 
 
@@ -165,235 +169,94 @@
           <div class="content">
             
 
+  <div class="posts-expand">
+      
   
   
-  
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        <span class="collection-header">嗯..! 目前共计 22 篇日志。 继续努力。</span>
-      </div>
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/01/18/React%E4%BA%8B%E4%BB%B6%E7%B3%BB%E7%BB%9F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Luzy">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Luzy's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          React事件系统
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/React/" itemprop="url" rel="index">
+                    <span itemprop="name">React</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <h1 class="collection-header">2021</h1>
-    </div>
+        <h3 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">React组件绑定事件本质上是代理到document上。</span><br></pre></td></tr></table></figure>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-01-18T22:52:01+08:00"
-              content="2021-01-18">
-          01-18
-        </time>
-      </div>
-
-      <h2 class="post-title">
-          <a class="post-title-link" href="/2021/01/18/React%E4%BA%8B%E4%BB%B6%E7%B3%BB%E7%BB%9F/" itemprop="url">
-            <span itemprop="name">React事件系统</span>
-          </a>
-      </h2>
-
-    </header>
-  </article>
-    <div class="collection-year">
-      <h1 class="collection-header">2020</h1>
-    </div>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-07-05T18:08:45+08:00"
-              content="2020-07-05">
-          07-05
-        </time>
-      </div>
-
-      <h2 class="post-title">
-          <a class="post-title-link" href="/2020/07/05/withRouter%E4%BD%BF%E7%94%A8/" itemprop="url">
-            <span itemprop="name">withRouter使用</span>
-          </a>
-      </h2>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-07-05T18:07:03+08:00"
-              content="2020-07-05">
-          07-05
-        </time>
-      </div>
-
-      <h2 class="post-title">
-          <a class="post-title-link" href="/2020/07/05/React-router%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5/" itemprop="url">
-            <span itemprop="name">React Router相关概念</span>
-          </a>
-      </h2>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-05-16T13:40:28+08:00"
-              content="2020-05-16">
-          05-16
-        </time>
-      </div>
-
-      <h2 class="post-title">
-          <a class="post-title-link" href="/2020/05/16/Hooks%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95/" itemprop="url">
-            <span itemprop="name">Hooks基本用法</span>
-          </a>
-      </h2>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-05-01T10:30:07+08:00"
-              content="2020-05-01">
-          05-01
-        </time>
-      </div>
-
-      <h2 class="post-title">
-          <a class="post-title-link" href="/2020/05/01/%E8%A3%85%E9%A5%B0%E5%99%A8/" itemprop="url">
-            <span itemprop="name">装饰器</span>
-          </a>
-      </h2>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-05-01T10:29:30+08:00"
-              content="2020-05-01">
-          05-01
-        </time>
-      </div>
-
-      <h2 class="post-title">
-          <a class="post-title-link" href="/2020/05/01/Context/" itemprop="url">
-            <span itemprop="name">Context</span>
-          </a>
-      </h2>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-05-01T10:28:23+08:00"
-              content="2020-05-01">
-          05-01
-        </time>
-      </div>
-
-      <h2 class="post-title">
-          <a class="post-title-link" href="/2020/05/01/Immutable/" itemprop="url">
-            <span itemprop="name">Immutable</span>
-          </a>
-      </h2>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-05-01T10:26:31+08:00"
-              content="2020-05-01">
-          05-01
-        </time>
-      </div>
-
-      <h2 class="post-title">
-          <a class="post-title-link" href="/2020/05/01/React%E5%85%B3%E9%94%AE%E7%82%B9%E6%80%BB%E7%BB%93/" itemprop="url">
-            <span itemprop="name">React基本概念</span>
-          </a>
-      </h2>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-04-09T12:42:48+08:00"
-              content="2020-04-09">
-          04-09
-        </time>
-      </div>
-
-      <h2 class="post-title">
-          <a class="post-title-link" href="/2020/04/09/this%E7%90%86%E8%A7%A3/" itemprop="url">
-            <span itemprop="name">this理解</span>
-          </a>
-      </h2>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-03-23T16:48:05+08:00"
-              content="2020-03-23">
-          03-23
-        </time>
-      </div>
-
-      <h2 class="post-title">
-          <a class="post-title-link" href="/2020/03/23/typeof-instanceof-%E8%AF%A6%E8%A7%A3/" itemprop="url">
-            <span itemprop="name">typeof && instanceof 详解</span>
-          </a>
-      </h2>
-
-    </header>
-  </article>
-
+<h3 id="React合成事件"><a href="#React合成事件" class="headerlink" title="React合成事件"></a>React合成事件</h3><p>在React中，通过React绑定的事件，其回调函数中的event对象，是经过React合成的SyntheticEvent,与原生的DOM事件的event不是一回事。</p>
+<p>因此，React合成事件对象的<code>e.stopPropagation</code>，只能阻止React模拟的事件冒泡，并不能阻止真实的DOM事件冒泡，更加不能阻止已经触发元素的多个事件的依次执行。在这种情况下，只有原生事件对象的<code>stopImmediatePropagation</code>能做到。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>对于React的合成事件对象e来说：</p>
+<ul>
+<li><p><code>e.stopPropagation</code></br><br>用来阻止React模拟的事件冒泡</p>
+</li>
+<li><p><code>e.stopImmediatePropagation</code></br><br>没有这个函数</p>
+</li>
+<li><p><code>e.nativeEvent.stopPropagation</code></br><br>原生事件对象的用于阻止DOM事件的进一步捕获或者冒泡</p>
+</li>
+<li><p><code>e.nativeEnvent.stopImmediatePropagation</code></br><br>原生事件对象的用于阻止DOM事件的进一步捕获或者冒泡，且该元素的后续绑定的相同事件类型的事件也被一并阻止。</p>
+</li>
+</ul>
 
     </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/07/05/withRouter%E4%BD%BF%E7%94%A8/" rel="prev" title="withRouter使用">
+      <i class="fa fa-chevron-left"></i> withRouter使用
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
   </div>
-  
-  
-  
-
-  
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="page-number" href="/archives/page/3/">3</a><a class="extend next" rel="next" href="/archives/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
-  </nav>
-
 
 
           </div>
@@ -444,6 +307,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#引言"><span class="nav-number">1.</span> <span class="nav-text">引言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#React合成事件"><span class="nav-number">2.</span> <span class="nav-text">React合成事件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
