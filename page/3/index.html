@@ -170,6 +170,86 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/20/%E4%BA%8B%E4%BB%B6%E7%9B%91%E5%90%AC/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Luzy">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Luzy's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/01/20/%E4%BA%8B%E4%BB%B6%E7%9B%91%E5%90%AC/" class="post-title-link" itemprop="url">事件监听</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%B5%8F%E8%A7%88%E5%99%A8/" itemprop="url" rel="index">
+                    <span itemprop="name">浏览器</span>
+                  </a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%B5%8F%E8%A7%88%E5%99%A8/API/" itemprop="url" rel="index">
+                    <span itemprop="name">API</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Unable to preventDefault inside passive event listener due to target being treated as passive</span><br></pre></td></tr></table></figure>
+
+<h3 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h3><p>当我们给<code>document</code>添加了<code>touch</code>事件的监听器的时候，如果同时在handle内部调用了<code>event.preventDefault()</code>就会报这个警告，提示我们，不能给passive（被动的） 事件监听器<code>preventDefault</code>,因为它被认为是passive</p>
+<h3 id="addEventListener"><a href="#addEventListener" class="headerlink" title="addEventListener"></a>addEventListener</h3><h4 id="target-addEventListener-type-listener-useCapture"><a href="#target-addEventListener-type-listener-useCapture" class="headerlink" title="target.addEventListener(type,listener, useCapture)"></a>target.addEventListener(type,listener, useCapture)</br></h4><p>useCature默认为false,表示在冒泡阶段出发listener</p>
+<h4 id="target-addEventListener-type-listener-options"><a href="#target-addEventListener-type-listener-options" class="headerlink" title="target.addEventListener(type,listener, options)"></a>target.addEventListener(type,listener, options)</h4><ul>
+<li><code>options</code><ul>
+<li><code>capture</code> (默认false)</li>
+<li><code>once</code></br><br>  表示listener在添加之后最多只调用一次，如果是true，listener会在其被调用后自动移除</li>
+<li><code>pasive</code></br><br>  设置为true时，表示<code>listener</code>永远不会调用<code>preventDefault()</code> (默认为true)</li>
+</ul>
+</li>
+</ul>
+<h3 id="passive-event-listener"><a href="#passive-event-listener" class="headerlink" title="passive event listener"></a><code>passive event listener</code></h3><p>当我们滚动页面的时候（通常是我们监听touch事件的时候），页面其实会有一个短暂的停顿，浏览器不知道我们是否需要<code>preventDefault</code>,所以它需要一个延迟来检测，导致我们滑动显得比较卡顿。</p>
+<p>我们可以对<code>addEventListener</code>设置<code>{passive: true}</code>来避免浏览器检测这个我们是否有在touch事件的handler里调用<code>preventDefault</code>。此时的事件监听器就被称为<strong>passive event listener</strong></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/19/new%E7%9A%84%E7%90%86%E8%A7%A3%E5%92%8C%E5%AE%9E%E7%8E%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -465,14 +545,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">22</span>
+          <span class="site-state-item-count">23</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">21</span>
+        <span class="site-state-item-count">22</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
   </nav>
