@@ -46,17 +46,19 @@
   };
 </script>
 
-  <meta name="description" content="React 界面都是由一个个组件拼接而成的组件 JSX语法书写组件 组件的更新依赖于setState方法  Redux面对复杂系统，一个组件内部状态的改变可能引起其它某个组件甚至多个组件的改变，需要用Redux将state管理起来，方便维护。 核心概念 Action（描述有事情发生这一事实） Reducer（描述应用如何更新state） Store(联系Action,Reducer) getSta">
+  <meta name="description" content="一般React技术栈的项目主要用到几个相关的库，这里总结一下。 React 界面都是由一个个组件拼接而成的组件 JSX语法书写组件 组件的更新依赖于setState方法  Redux面对复杂系统，一个组件内部状态的改变可能引起其它某个组件甚至多个组件的改变，需要用Redux将state管理起来，方便维护。 核心概念 Action（描述有事情发生这一事实） Reducer（描述应用如何更新state">
 <meta property="og:type" content="article">
 <meta property="og:title" content="React基本概念">
 <meta property="og:url" content="http://yoursite.com/2020/05/01/React%E5%85%B3%E9%94%AE%E7%82%B9%E6%80%BB%E7%BB%93/index.html">
 <meta property="og:site_name" content="Luzy&#39;s Blog">
-<meta property="og:description" content="React 界面都是由一个个组件拼接而成的组件 JSX语法书写组件 组件的更新依赖于setState方法  Redux面对复杂系统，一个组件内部状态的改变可能引起其它某个组件甚至多个组件的改变，需要用Redux将state管理起来，方便维护。 核心概念 Action（描述有事情发生这一事实） Reducer（描述应用如何更新state） Store(联系Action,Reducer) getSta">
+<meta property="og:description" content="一般React技术栈的项目主要用到几个相关的库，这里总结一下。 React 界面都是由一个个组件拼接而成的组件 JSX语法书写组件 组件的更新依赖于setState方法  Redux面对复杂系统，一个组件内部状态的改变可能引起其它某个组件甚至多个组件的改变，需要用Redux将state管理起来，方便维护。 核心概念 Action（描述有事情发生这一事实） Reducer（描述应用如何更新state">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://file.5rs.me/oss/uploadfe/gif/a550435defef17881fc231de890d7440.gif">
 <meta property="article:published_time" content="2020-05-01T02:26:31.854Z">
-<meta property="article:modified_time" content="2020-06-14T16:05:28.793Z">
+<meta property="article:modified_time" content="2021-01-27T13:45:34.047Z">
 <meta property="article:author" content="Luzy">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://file.5rs.me/oss/uploadfe/gif/a550435defef17881fc231de890d7440.gif">
 
 <link rel="canonical" href="http://yoursite.com/2020/05/01/React%E5%85%B3%E9%94%AE%E7%82%B9%E6%80%BB%E7%BB%93/">
 
@@ -201,12 +203,6 @@
                     <span itemprop="name">React</span>
                   </a>
                 </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/React/Redux/" itemprop="url" rel="index">
-                    <span itemprop="name">Redux</span>
-                  </a>
-                </span>
             </span>
 
           
@@ -220,7 +216,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="React"><a href="#React" class="headerlink" title="React"></a>React</h3><ul>
+        <p>一般React技术栈的项目主要用到几个相关的库，这里总结一下。</p>
+<h3 id="React"><a href="#React" class="headerlink" title="React"></a>React</h3><ul>
 <li>界面都是由一个个组件拼接而成的组件</li>
 <li>JSX语法书写组件</li>
 <li>组件的更新依赖于<code>setState</code>方法</li>
@@ -237,6 +234,9 @@
 </li>
 </ul>
 <h4 id="工作流（数据流）"><a href="#工作流（数据流）" class="headerlink" title="工作流（数据流）"></a>工作流（数据流）</h4><p>通过调用<code>store.dispatch</code>派发一个<code>action</code>，从而触发<code>reducer</code>，继而改变整个状态树(state tree)。整个<br>流程是单向数据流。</p>
+<h4 id=""><a href="#" class="headerlink" title=""></a></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Action creators create objects → </span><br><span class="line">objects are dispatched to the store → </span><br><span class="line">the store invokes reducers → </span><br><span class="line">reducers generate new state → listeners are notified of state updates.</span><br></pre></td></tr></table></figure>
+
+<h4 id="一图胜千言"><a href="#一图胜千言" class="headerlink" title="一图胜千言"></a>一图胜千言</h4><p><img src="https://file.5rs.me/oss/uploadfe/gif/a550435defef17881fc231de890d7440.gif" alt="image"></p>
 <h4 id="注意点"><a href="#注意点" class="headerlink" title="注意点"></a>注意点</h4><p>在<code>Reducer</code>中需要小心，不要修改<code>State</code>，使用比较hack的方法是<code>Object.assign()</code>返回一个副本，也可以结合<code>Immutable</code>来处理。</p>
 <ul>
 <li><code>Redux</code>的<code>combineReducers</code>方法是浅比较它调用的<code>reducer</code>的引用是否发生变化</li>
@@ -266,9 +266,8 @@
 <li>每个<code>middleware</code>接收<code>store</code>的<code>dispatch</code>和<code>getState</code>返回的是一个函数</li>
 <li>这个函数的参数是下一个<code>middleware</code>的<code>dispatch</code>,称为<code>next</code></li>
 <li>中间件完整的函数是:</br><br><code>store =&gt; next =&gt; action</code></li>
-<li>通过<code>applyMiddle</code>方法，将这些中间件(middleware)串联起来，原始的<code>dispatch</code>方法会最后执行。</li>
+<li>通过<code>applyMiddleware</code>方法，将这些中间件(middleware)串联起来，原始的<code>dispatch</code>方法会最后执行。</li>
 <li>中间件的整体工作流程是属于洋葱模型</li>
-<li></li>
 </ul>
 
     </div>
@@ -351,7 +350,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#React"><span class="nav-number">1.</span> <span class="nav-text">React</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Redux"><span class="nav-number">2.</span> <span class="nav-text">Redux</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#核心概念"><span class="nav-number">2.1.</span> <span class="nav-text">核心概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#工作流（数据流）"><span class="nav-number">2.2.</span> <span class="nav-text">工作流（数据流）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#注意点"><span class="nav-number">2.3.</span> <span class="nav-text">注意点</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#react-redux"><span class="nav-number">3.</span> <span class="nav-text">react-redux</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#核心API"><span class="nav-number">3.1.</span> <span class="nav-text">核心API</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#connect-mapStateToProps-mapDispatchToProps-megeProps-options"><span class="nav-number">3.2.</span> <span class="nav-text">connect([mapStateToProps],[mapDispatchToProps],[megeProps],[options])</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Middleware"><span class="nav-number">4.</span> <span class="nav-text">Middleware:</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#作用"><span class="nav-number">4.1.</span> <span class="nav-text">作用</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#React"><span class="nav-number">1.</span> <span class="nav-text">React</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Redux"><span class="nav-number">2.</span> <span class="nav-text">Redux</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#核心概念"><span class="nav-number">2.1.</span> <span class="nav-text">核心概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#工作流（数据流）"><span class="nav-number">2.2.</span> <span class="nav-text">工作流（数据流）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#null"><span class="nav-number">2.3.</span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#一图胜千言"><span class="nav-number">2.4.</span> <span class="nav-text">一图胜千言</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#注意点"><span class="nav-number">2.5.</span> <span class="nav-text">注意点</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#react-redux"><span class="nav-number">3.</span> <span class="nav-text">react-redux</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#核心API"><span class="nav-number">3.1.</span> <span class="nav-text">核心API</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#connect-mapStateToProps-mapDispatchToProps-megeProps-options"><span class="nav-number">3.2.</span> <span class="nav-text">connect([mapStateToProps],[mapDispatchToProps],[megeProps],[options])</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Middleware"><span class="nav-number">4.</span> <span class="nav-text">Middleware:</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#作用"><span class="nav-number">4.1.</span> <span class="nav-text">作用</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -365,14 +364,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">23</span>
+          <span class="site-state-item-count">29</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">22</span>
+        <span class="site-state-item-count">24</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
   </nav>
