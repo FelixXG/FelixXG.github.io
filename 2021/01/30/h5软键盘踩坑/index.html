@@ -46,19 +46,24 @@
   };
 </script>
 
-  <meta name="description" content="Http1.0和HTTP1.1一些区别缓存处理在HTTP1.0中主要使用header里的If-Modified-Since,Expires来做为缓存判断的标准，HTTP1.1则引入了更多的缓存控制策略例如Entity tag，If-Unmodified-Since, If-Match, If-None-Match等更多可供选择的缓存头来控制缓存策略 长连接HTTP1.1支持长连接和请求的流水线处理">
+  <meta name="description" content="引言h5中input输入，弹出的软键盘会占据window的位置。 在Android系统中，当页面中有position:absolute或者position:fixed的元素，软键盘弹起后，window的高度是窗体的顶部到软键盘之上，底部的固定定位元素会覆盖到输入框上。 如图： 解决方案监听resize事件,话不多说，抄起键盘 1234567891011121314151617181920&amp;#x2F">
 <meta property="og:type" content="article">
-<meta property="og:title" content="http版本差异">
-<meta property="og:url" content="http://yoursite.com/2021/01/27/http%E7%89%88%E6%9C%AC%E5%B7%AE%E5%BC%82/index.html">
+<meta property="og:title" content="h5软键盘踩坑">
+<meta property="og:url" content="http://yoursite.com/2021/01/30/h5%E8%BD%AF%E9%94%AE%E7%9B%98%E8%B8%A9%E5%9D%91/index.html">
 <meta property="og:site_name" content="Luzy&#39;s Blog">
-<meta property="og:description" content="Http1.0和HTTP1.1一些区别缓存处理在HTTP1.0中主要使用header里的If-Modified-Since,Expires来做为缓存判断的标准，HTTP1.1则引入了更多的缓存控制策略例如Entity tag，If-Unmodified-Since, If-Match, If-None-Match等更多可供选择的缓存头来控制缓存策略 长连接HTTP1.1支持长连接和请求的流水线处理">
+<meta property="og:description" content="引言h5中input输入，弹出的软键盘会占据window的位置。 在Android系统中，当页面中有position:absolute或者position:fixed的元素，软键盘弹起后，window的高度是窗体的顶部到软键盘之上，底部的固定定位元素会覆盖到输入框上。 如图： 解决方案监听resize事件,话不多说，抄起键盘 1234567891011121314151617181920&amp;#x2F">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-01-27T13:50:47.902Z">
-<meta property="article:modified_time" content="2021-01-27T13:51:10.140Z">
+<meta property="og:image" content="https://file.5rs.me/oss/uploadfe/jpg/06d1d3089b64049cdc32f17e17978c42.jpg">
+<meta property="og:image" content="https://file.5rs.me/oss/uploadfe/jpg/2329d27f68554f706dbf9607a2bd3c78.jpg">
+<meta property="og:image" content="https://file.5rs.me/oss/uploadfe/jpg/3f5534bbd8bbac4896697018c641132f.jpg">
+<meta property="og:image" content="https://download.5rs.me/oss/uploadfe/jpg/aaf9226a1a1a35814d6e586bb34f0072.jpg?auth_key=1611988702-0-0-811da0bbe67b0c660a2317657b4b0548">
+<meta property="article:published_time" content="2021-01-30T02:14:06.734Z">
+<meta property="article:modified_time" content="2021-01-30T02:17:49.138Z">
 <meta property="article:author" content="Luzy">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://file.5rs.me/oss/uploadfe/jpg/06d1d3089b64049cdc32f17e17978c42.jpg">
 
-<link rel="canonical" href="http://yoursite.com/2021/01/27/http%E7%89%88%E6%9C%AC%E5%B7%AE%E5%BC%82/">
+<link rel="canonical" href="http://yoursite.com/2021/01/30/h5%E8%BD%AF%E9%94%AE%E7%9B%98%E8%B8%A9%E5%9D%91/">
 
 
 <script id="page-configurations">
@@ -70,7 +75,7 @@
   };
 </script>
 
-  <title>http版本差异 | Luzy's Blog</title>
+  <title>h5软键盘踩坑 | Luzy's Blog</title>
   
 
 
@@ -174,7 +179,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/01/27/http%E7%89%88%E6%9C%AC%E5%B7%AE%E5%BC%82/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/01/30/h5%E8%BD%AF%E9%94%AE%E7%9B%98%E8%B8%A9%E5%9D%91/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -187,7 +192,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          http版本差异
+          h5软键盘踩坑
         </h1>
 
         <div class="post-meta">
@@ -197,8 +202,8 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%BD%91%E7%BB%9C/" itemprop="url" rel="index">
-                    <span itemprop="name">网络</span>
+                  <a href="/categories/bug%E6%97%A5%E8%AE%B0/" itemprop="url" rel="index">
+                    <span itemprop="name">bug日记</span>
                   </a>
                 </span>
             </span>
@@ -214,9 +219,21 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="Http1-0和HTTP1-1一些区别"><a href="#Http1-0和HTTP1-1一些区别" class="headerlink" title="Http1.0和HTTP1.1一些区别"></a>Http1.0和HTTP1.1一些区别</h3><h4 id="缓存处理"><a href="#缓存处理" class="headerlink" title="缓存处理"></a>缓存处理</h4><p>在HTTP1.0中主要使用header里的If-Modified-Since,Expires来做为缓存判断的标准，HTTP1.1则引入了更多的缓存控制策略例如Entity tag，If-Unmodified-Since, If-Match, If-None-Match等更多可供选择的缓存头来控制缓存策略</p>
-<h4 id="长连接"><a href="#长连接" class="headerlink" title="长连接"></a>长连接</h4><p>HTTP1.1支持长连接和请求的流水线处理，在一个TCP连接上可以传送多个HTTP请求和响应，减少了建立和关闭连接的消耗和延迟，在HTTP1.1中默认开启Connection:keep-alive,一定程度上弥补了HTTP1.0每次请求都要创建连接的缺点。</p>
-<h3 id="Http2-0和Http1-X相比的特性"><a href="#Http2-0和Http1-X相比的特性" class="headerlink" title="Http2.0和Http1.X相比的特性"></a>Http2.0和Http1.X相比的特性</h3><h4 id="新的二进制格式"><a href="#新的二进制格式" class="headerlink" title="新的二进制格式"></a>新的二进制格式</h4><p>HTTP1.x的解析是基于文本，HTTP2.0解析采用二进制格式，实现方便且健壮。<br>####多路复用<br>即连接共享，每一个request都是用作练级诶共享机制的。一个request对应一个id,这样一个连接上可以有多个request，每个连接的request可以随机在一起，接收方可以根据request的id将request再归属到各自不同的服务器请求里面。</p>
+        <h3 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h3><p><strong>h5中input输入，弹出的软键盘会占据window的位置。</strong></p>
+<p>在Android系统中，当页面中有<code>position:absolute</code>或者<code>position:fixed</code>的元素，软键盘弹起后，window的高度是窗体的顶部到软键盘之上，底部的固定定位元素会覆盖到输入框上。</p>
+<p>如图：<br><img src="https://file.5rs.me/oss/uploadfe/jpg/06d1d3089b64049cdc32f17e17978c42.jpg" alt="image"></p>
+<h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><p>监听<code>resize</code>事件,话不多说，抄起键盘</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;提前拿到键盘未弹起的高度</span><br><span class="line">this.originHeight &#x3D; document.documentElement.clientHeight || document.body.clientHeight;</span><br><span class="line"></span><br><span class="line">....</span><br><span class="line">&#x2F;&#x2F;控制底部按钮的展示</span><br><span class="line"> let isShowButton &#x3D; true;</span><br><span class="line">  if(Utils.browser().android) &#123;</span><br><span class="line">      const resizeHeight &#x3D; document.documentElement.clientHeight || document.body.clientHeight;</span><br><span class="line">      let isShowButton &#x3D; true;</span><br><span class="line">      if(resizeHeight &lt; this.originHeight) &#123;</span><br><span class="line">        &#x2F;&#x2F; 键盘弹起的页面逻辑</span><br><span class="line">       isShowButton &#x3D; false;</span><br><span class="line">      &#125; else &#123;</span><br><span class="line">        &#x2F;&#x2F; 键盘弹收起的页面逻辑</span><br><span class="line">        isShowButton &#x3D; true;</span><br><span class="line">      &#125;</span><br><span class="line">      this.setState(&#123;</span><br><span class="line">        isShowButton</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>实际效果：</p>
+<p><img src="https://file.5rs.me/oss/uploadfe/jpg/2329d27f68554f706dbf9607a2bd3c78.jpg" alt="image"></p>
+<p>会发现稍微有点瑕疵，输入框盖在了背景图上面，sad！！！</p>
+<p><img src="https://file.5rs.me/oss/uploadfe/jpg/3f5534bbd8bbac4896697018c641132f.jpg" alt="image"></p>
+<p>导致这个的原因是因为键盘弹起的时候，body高度塌陷了，背景图也塌陷了，我们之前提前拿了原始body高度<strong>this.originHeight</strong>，直接给style设置上</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">style&#x3D;&#123;&#123; backgroundImage: &#96;url($&#123;skinConfig.backgroundPic&#125;)&#96;, height: &#96;$&#123;this.originHeight&#125;px&#96; &#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>效果<br><img src="https://download.5rs.me/oss/uploadfe/jpg/aaf9226a1a1a35814d6e586bb34f0072.jpg?auth_key=1611988702-0-0-811da0bbe67b0c660a2317657b4b0548" alt="image"></p>
 
     </div>
 
@@ -232,13 +249,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/01/27/http%E7%BC%93%E5%AD%98/" rel="prev" title="http缓存">
-      <i class="fa fa-chevron-left"></i> http缓存
+    <a href="/2021/01/27/http%E7%89%88%E6%9C%AC%E5%B7%AE%E5%BC%82/" rel="prev" title="http版本差异">
+      <i class="fa fa-chevron-left"></i> http版本差异
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2021/01/30/h5%E8%BD%AF%E9%94%AE%E7%9B%98%E8%B8%A9%E5%9D%91/" rel="next" title="h5软键盘踩坑">
-      h5软键盘踩坑 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -298,7 +312,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Http1-0和HTTP1-1一些区别"><span class="nav-number">1.</span> <span class="nav-text">Http1.0和HTTP1.1一些区别</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#缓存处理"><span class="nav-number">1.1.</span> <span class="nav-text">缓存处理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#长连接"><span class="nav-number">1.2.</span> <span class="nav-text">长连接</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Http2-0和Http1-X相比的特性"><span class="nav-number">2.</span> <span class="nav-text">Http2.0和Http1.X相比的特性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#新的二进制格式"><span class="nav-number">2.1.</span> <span class="nav-text">新的二进制格式</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#引言"><span class="nav-number">1.</span> <span class="nav-text">引言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解决方案"><span class="nav-number">2.</span> <span class="nav-text">解决方案</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

@@ -170,6 +170,81 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/01/30/h5%E8%BD%AF%E9%94%AE%E7%9B%98%E8%B8%A9%E5%9D%91/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Luzy">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Luzy's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/01/30/h5%E8%BD%AF%E9%94%AE%E7%9B%98%E8%B8%A9%E5%9D%91/" class="post-title-link" itemprop="url">h5软键盘踩坑</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/bug%E6%97%A5%E8%AE%B0/" itemprop="url" rel="index">
+                    <span itemprop="name">bug日记</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h3><p><strong>h5中input输入，弹出的软键盘会占据window的位置。</strong></p>
+<p>在Android系统中，当页面中有<code>position:absolute</code>或者<code>position:fixed</code>的元素，软键盘弹起后，window的高度是窗体的顶部到软键盘之上，底部的固定定位元素会覆盖到输入框上。</p>
+<p>如图：<br><img src="https://file.5rs.me/oss/uploadfe/jpg/06d1d3089b64049cdc32f17e17978c42.jpg" alt="image"></p>
+<h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><p>监听<code>resize</code>事件,话不多说，抄起键盘</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;提前拿到键盘未弹起的高度</span><br><span class="line">this.originHeight &#x3D; document.documentElement.clientHeight || document.body.clientHeight;</span><br><span class="line"></span><br><span class="line">....</span><br><span class="line">&#x2F;&#x2F;控制底部按钮的展示</span><br><span class="line"> let isShowButton &#x3D; true;</span><br><span class="line">  if(Utils.browser().android) &#123;</span><br><span class="line">      const resizeHeight &#x3D; document.documentElement.clientHeight || document.body.clientHeight;</span><br><span class="line">      let isShowButton &#x3D; true;</span><br><span class="line">      if(resizeHeight &lt; this.originHeight) &#123;</span><br><span class="line">        &#x2F;&#x2F; 键盘弹起的页面逻辑</span><br><span class="line">       isShowButton &#x3D; false;</span><br><span class="line">      &#125; else &#123;</span><br><span class="line">        &#x2F;&#x2F; 键盘弹收起的页面逻辑</span><br><span class="line">        isShowButton &#x3D; true;</span><br><span class="line">      &#125;</span><br><span class="line">      this.setState(&#123;</span><br><span class="line">        isShowButton</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>实际效果：</p>
+<p><img src="https://file.5rs.me/oss/uploadfe/jpg/2329d27f68554f706dbf9607a2bd3c78.jpg" alt="image"></p>
+<p>会发现稍微有点瑕疵，输入框盖在了背景图上面，sad！！！</p>
+<p><img src="https://file.5rs.me/oss/uploadfe/jpg/3f5534bbd8bbac4896697018c641132f.jpg" alt="image"></p>
+<p>导致这个的原因是因为键盘弹起的时候，body高度塌陷了，背景图也塌陷了，我们之前提前拿了原始body高度<strong>this.originHeight</strong>，直接给style设置上</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">style&#x3D;&#123;&#123; backgroundImage: &#96;url($&#123;skinConfig.backgroundPic&#125;)&#96;, height: &#96;$&#123;this.originHeight&#125;px&#96; &#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>效果<br><img src="https://download.5rs.me/oss/uploadfe/jpg/aaf9226a1a1a35814d6e586bb34f0072.jpg?auth_key=1611988702-0-0-811da0bbe67b0c660a2317657b4b0548" alt="image"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/01/27/http%E7%89%88%E6%9C%AC%E5%B7%AE%E5%BC%82/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1202,140 +1277,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/16/Hooks%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Luzy">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Luzy's Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/05/16/Hooks%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95/" class="post-title-link" itemprop="url">Hooks基本用法</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/React/" itemprop="url" rel="index">
-                    <span itemprop="name">React</span>
-                  </a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/React/Hooks/" itemprop="url" rel="index">
-                    <span itemprop="name">Hooks</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="什么是Hooks"><a href="#什么是Hooks" class="headerlink" title="什么是Hooks"></a>什么是Hooks</h3><p>Hooks是一种函数，该函数允许您从函数式组件“勾住(hook into)”React状态和生命周期功能</p>
-<h3 id="有哪些钩子"><a href="#有哪些钩子" class="headerlink" title="有哪些钩子"></a>有哪些钩子</h3><p>基本钩子：<code>useState</code>、<code>useEffect</code>、<code>useContext</code></br><br>额外的钩子：<code>useCallback</code>、<code>useReducer</code>、<code>userMemo</code>、<code>useRef</code>、<code>useLayoutEffect</code>、<code>useImperativeHandle</code>、<code>useDebugValue</code></p>
-<h3 id="不同钩子的用法"><a href="#不同钩子的用法" class="headerlink" title="不同钩子的用法"></a>不同钩子的用法</h3><h4 id="useState"><a href="#useState" class="headerlink" title="useState"></a><code>useState</code></h4><p>创建于一个新的状态，参数为一个固定的值或者一个有返回值的方法。钩子执行后的结果为一个<strong>数组</strong>，分别为生成的状态以及改变状态的方法，通过解构赋值的方法拿到对应的值和方法</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">const [count, changeCount] &#x3D; useState(0);</span><br></pre></td></tr></table></figure>
-
-<p><strong>需要注意的是</strong>：<code>useState</code>相较于类组件的<code>setState</code>的非覆盖式更新改变，<code>useState</code> 覆盖式更新状态，需要开发者自己处理逻辑比如<code>setobject({...obj,count:1})</code></p>
-<h4 id="useEffect（每次render都会执行）"><a href="#useEffect（每次render都会执行）" class="headerlink" title="useEffect（每次render都会执行）"></a><code>useEffect</code>（每次render都会执行）</h4><p>执行副作用钩子，所有的副作用在组件挂在完成后会执行一次，如果副作用存在返回的函数，那么返回的函数将在卸载时运行。主要应用于以下两种情况</br><br>1、函数式组件中不存在类组件的生命周期，如果我们需要在一些特定的生命周期或者变化后做一些操作的话，必须借助<code>useEffect</code>的一些特性去实现。</p>
-<p>2、useState产生的changeState方法并没有提供类似于setState的第二个参数一样的功能，因此如果需要在State改变后执行一些方法，必须通过useEffect实现</p>
-<p>该钩子接受两个参数：第一个参数为副作用需要执行回调，生成的回调方法可以返回一个函数（<strong>将在组件卸载时运行</strong>）；第二个为该副作用监听的状态数组。当对应状态发生变动时会执行副作用，<strong>如果第二个参数为空，那么在每一个State变化时都会执行该副作用</strong></br></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">const [count, changeCount] &#x3D; useState(0);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 将在count变化时打印最新的count数据</span><br><span class="line">useEffect(() &#x3D;&gt; &#123;</span><br><span class="line">  message.info(&#96;count发生变动，最新值为$&#123;count&#125;&#96;);</span><br><span class="line">&#125;, [count])</span><br></pre></td></tr></table></figure>
-
-<p>如何应用第一种情况呢，分析我们需要的是让目标副作用在初始化执行一次后再也不会被调用，于是只要让与该副作用相关联的状态为空(空数组)，不管其他状态如何变化，该副作用都不会再次执行，就实现了<code>componentDidMount</code>和<code>componentWillUnmount</code>的功能</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">useEffect(() &#x3D;&gt; &#123;</span><br><span class="line">    message.info(&#39;我只在页面挂载时打印&#39;);</span><br><span class="line">    return () &#x3D;&gt; &#123;</span><br><span class="line">      message.info(&#39;我只在页面卸载时打印&#39;);</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;, []);</span><br></pre></td></tr></table></figure>
-
-<h4 id="useCallback-缓存函数"><a href="#useCallback-缓存函数" class="headerlink" title="useCallback(缓存函数)"></a><code>useCallback</code>(缓存函数)</h4><p>生成Callback的钩子。用于不同的<code>useEffect</code>中存在的相同逻辑的封装，减少代码冗余，配合<code>useEffect</code>使用。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">const [count1, changeCount1] &#x3D; useState(0);</span><br><span class="line">const [count2, changeCount2] &#x3D; useState(10);</span><br><span class="line"></span><br><span class="line">const calculateCount &#x3D; useCallback(() &#x3D;&gt; &#123;</span><br><span class="line">  if (count1 &amp;&amp; count2) &#123;</span><br><span class="line">    return count1 * count2;</span><br><span class="line">  &#125;</span><br><span class="line">  return count1 + count2;</span><br><span class="line">&#125;, [count1, count2])</span><br><span class="line"></span><br><span class="line">useEffect(() &#x3D;&gt; &#123;</span><br><span class="line">    const result &#x3D; calculateCount(count, count2);</span><br><span class="line">    message.info(&#96;执行副作用，最新值为$&#123;result&#125;&#96;);</span><br><span class="line">&#125;, [calculateCount])</span><br></pre></td></tr></table></figure>
-
-<p>在使用<code>useCallback</code>生成计算的回调后，在使用该回调的副作用中，<strong>第二个参数应该是生成的回调</strong><br>此时<code>useCallback</code>和<code>useEffect</code>是按顺序执行的，实现了副作用逻辑的抽离</p>
-<h4 id="useRef-可以绕过Hooks的Capture-Value特性"><a href="#useRef-可以绕过Hooks的Capture-Value特性" class="headerlink" title="useRef(可以绕过Hooks的Capture Value特性)"></a><code>useRef</code>(可以绕过Hooks的Capture Value特性)</h4><ul>
-<li>获取DOM元素的节点</li>
-<li>获取子组件的实例</li>
-<li>渲染周期之间共享数据的存储（state不能存储跨渲染周期的数据，因为state的保存会触发组件重渲染）</br><br><code>useRef</code>接受一个参数，为ref的初始值。类似类组件的<code>createRef</code>方法，该钩子会返回一个对象，对象中的current字段为我们<strong>指向实例/保存的变量</strong>,可以实现获得目标节点实例或保存状态的功能。</li>
-</ul>
-<p><strong>useRef保存的变量不会随着每次数据的变化重新生成，而是保持在我们最后一次赋值时的状态，依靠这种特性，在配合useCallback和useEffect我们可以实现preProps/preState的功能。</strong></p>
-<h4 id="useMemo（React-memo）（缓存值）"><a href="#useMemo（React-memo）（缓存值）" class="headerlink" title="useMemo（React.memo）（缓存值）"></a><code>useMemo</code>（React.memo）（缓存值）</h4><p>Memo为Memory简写，<code>useMemo</code>即使用记忆的内容。该钩子主要用于性能的优化。</p>
-<p>在业务中，我们可以用<code>useMemo</code>来处理计算结果的缓存或引入组件来防止重复挂载优化。其接受两个参数，第一个参数为<code>Getter</code>方法，<strong>返回值为要缓存的数据或组件</strong>，第二个参数为该返回值相关联的状态，当其中任何一个状态发生变化时就会重新调用Getter方法生成新的返回值。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">const calculateCount &#x3D; useMemo(() &#x3D;&gt; &#123;</span><br><span class="line">   message.info(&#39;重新生成计算结果&#39;);</span><br><span class="line">   return count1 * 10;</span><br><span class="line"> &#125;, [count1]);</span><br><span class="line"> </span><br><span class="line"> &#x2F;&#x2F;返回组件</span><br><span class="line">   const child &#x3D; useMemo(() &#x3D;&gt; &#123;</span><br><span class="line">   message.info(&#39;重新生成Child组件&#39;);</span><br><span class="line">   return &lt;Child count&#x3D;&#123;count1&#125; &#x2F;&gt;;</span><br><span class="line"> &#125;, [count1]);</span><br><span class="line"> return (</span><br></pre></td></tr></table></figure>
-
-
-<h3 id="useCallback和useMemo"><a href="#useCallback和useMemo" class="headerlink" title="useCallback和useMemo"></a><code>useCallback</code>和<code>useMemo</code></h3><p><code>useCallback</code>是根据以来缓存第一个入参的(callback)。<code>useMemo</code>是根据依赖(deps)缓存第一个入参(allback)执行后的值</p>
-<h3 id="编写自己的钩子"><a href="#编写自己的钩子" class="headerlink" title="编写自己的钩子"></a>编写自己的钩子</h3><p>钩子并不是什么高深莫测的东西，它只是对我们常用逻辑的一些封装。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">import React,&#123; useState &#125; from &#39;react&#39;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;编写我们自己的hook,名字以use开头</span><br><span class="line">funtion useCounter(initialValue)&#123;</span><br><span class="line">    &#x2F;&#x2F;接受初始化值生成state</span><br><span class="line">    const [count,changeCount] &#x3D; useState(initialValue)</span><br><span class="line">    &#x2F;&#x2F;声明减少的方法</span><br><span class="line">    const decrease &#x3D; () &#x3D;&gt;&#123;</span><br><span class="line">        changeCount(count - 1);</span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;&#x2F;声明增加的方法</span><br><span class="line">    const increase &#x3D; () &#x3D;&gt;&#123;</span><br><span class="line">        changeCount(count + 1)</span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;&#x2F;声明重置计数器方法</span><br><span class="line">    const resetCounter &#x3D; () &#x3D;&gt;&#123;</span><br><span class="line">        changeCount(0)</span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;&#x2F;将count数字与方法返回回去</span><br><span class="line">    return [count,&#123;decrease,increase,resetCounter&#125;]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export default function myHooksView() &#123;</span><br><span class="line">  &#x2F;&#x2F; 在函数组件中使用我们自己编写的hook生成一个计数器，并拿到所有操作方法的对象</span><br><span class="line">  const [count, controlCount] &#x3D; useCounter(10);</span><br><span class="line">  return (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        当前数量：&#123;count&#125;</span><br><span class="line">            &lt;button onClick&#x3D;&#123;controlCount.decrease&#125;&gt;减少&lt;&#x2F;button&gt;</span><br><span class="line">            &lt;button onClick&#x3D;&#123;controlCount.increase&#125;&gt;增加&lt;&#x2F;button&gt;</span><br><span class="line">            &lt;button onClick&#x3D;&#123;controlCount.resetCounter&#125;&gt;重置&lt;&#x2F;button&gt;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">  )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><table>
-<thead>
-<tr>
-<th>钩子</th>
-<th>用法</th>
-<th>作用</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>useState</td>
-<td>const [state,changeState] = useState(initialValue)</td>
-<td>用于生成状态以及改变状态</td>
-</tr>
-<tr>
-<td>useEffect</td>
-<td>useEffect(fn,[…relativeState])</td>
-<td>用于生成与状态绑定的副作用</td>
-</tr>
-<tr>
-<td>useCallback</td>
-<td>useCallback(fn,[…relativeState])</td>
-<td>用于生成与状态绑定的回调函数</td>
-</tr>
-<tr>
-<td>useMemo</td>
-<td>useMemo(fn,[…relativeState])</td>
-<td>用于生成与状态绑定的组件/计算结果</td>
-</tr>
-<tr>
-<td>useRef</td>
-<td>const newRef = useRef(initialValue)</td>
-<td>用于获取节点实例/数据保存</td>
-</tr>
-</tbody></table>
-<p><a href="https://github.com/happylindz/blog/issues/19">示例</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1406,14 +1347,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">29</span>
+          <span class="site-state-item-count">30</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-count">25</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
   </nav>
