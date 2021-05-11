@@ -170,6 +170,85 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/05/11/https/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Luzy">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Luzy's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/05/11/https/" class="post-title-link" itemprop="url">https</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BD%91%E7%BB%9C/" itemprop="url" rel="index">
+                    <span itemprop="name">网络</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="RSA-非对称加密"><a href="#RSA-非对称加密" class="headerlink" title="RSA(非对称加密)"></a>RSA(非对称加密)</h3><p>用私钥加密的数据，只有对应的公钥才能解密，用公钥加密的数据，只有对应的私钥才能解密</p>
+<h3 id="非对称加密-对称加密"><a href="#非对称加密-对称加密" class="headerlink" title="非对称加密 + 对称加密"></a>非对称加密 + 对称加密</h3><ul>
+<li>生成一个对称加密算法的秘钥，用RSA方式传递</li>
+<li>再用对称加密算法来通信</li>
+</ul>
+<h3 id="数字签名"><a href="#数字签名" class="headerlink" title="数字签名"></a>数字签名</h3><p>(服务器的公钥+服务器信息)通过hash算法生成(消息摘要)通过CA的私钥加密从而生成数字签名</p>
+<h3 id="数字证书"><a href="#数字证书" class="headerlink" title="数字证书"></a>数字证书</h3><p>公钥 + 签名，由第三方认证机构颁发</p>
+<h3 id="校验过程"><a href="#校验过程" class="headerlink" title="校验过程"></a>校验过程</h3><p>当接收到服务器的证书，客户端用同样的Hash算法，再次生成消息摘要，然后用CA的公钥对数字签名解密，得到CA创建的消息摘要，两者一比，就知道有没有人篡改了，<br>如果没有篡改就取服务的公钥。</p>
+<p><img src="https://ss.csdn.net/p?http://mmbiz.qpic.cn/mmbiz_png/KyXfCrME6UJFk4ma5Y5g5wIeggZaCZ3x1n4IwPsiaF62PuK3aASF76C3ortagdYyFs8gUic6aJr9ibwyj2quFCMjQ/0?wx_fmt=png" alt="image"></p>
+<h3 id="https流程"><a href="#https流程" class="headerlink" title="https流程"></a>https流程</h3><ul>
+<li>浏览器发出安全请求(<a href="http://xxx.com">http://xxx.com</a>)</li>
+<li>服务器发送数字证书（包含服务器的public key）</li>
+<li>浏览器用预置的CA列表验证证书，如果有问题，则提示风险</li>
+<li>浏览器生产随机的对称密钥，用服务器的public key加密</li>
+<li>服务器用自己的private key进行解密，得到对称密钥</li>
+<li>双方都知道对称密钥，用它来加密通信</li>
+</ul>
+<p><img src="http://mmbiz.qpic.cn/mmbiz_png/KyXfCrME6UJFk4ma5Y5g5wIeggZaCZ3xKYfzxv54kPQ9q9SKRPHpnVib9MF6MfPcLJgej3wicCVZSicUMNzoVasiaA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="https流程图"></p>
+<p><a href="https://blog.csdn.net/coderising/article/details/100021384">参考链接</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/01/30/h5%E8%BD%AF%E9%94%AE%E7%9B%98%E8%B8%A9%E5%9D%91/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1162,126 +1241,11 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/05/React-router%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Luzy">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Luzy's Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/07/05/React-router%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5/" class="post-title-link" itemprop="url">React Router相关概念</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/React/" itemprop="url" rel="index">
-                    <span itemprop="name">React</span>
-                  </a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/React/Router/" itemprop="url" rel="index">
-                    <span itemprop="name">Router</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;写法一</span><br><span class="line">import &#123;Switch,Route,Router,HashHistory,Link&#125; from &#39;react-router-dom&#39;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;写法二</span><br><span class="line">import &#123;Switch,Route,Router&#125; from &#39;react-router&#39;</span><br><span class="line">import &#123;HashHistory,Link&#125; from &#39;react-router-dom&#39;</span><br></pre></td></tr></table></figure>
-
-<h2 id="react-router-react-router-dom和react-router-native"><a href="#react-router-react-router-dom和react-router-native" class="headerlink" title="react-router,react-router-dom和react-router-native"></a><code>react-router</code>,<code>react-router-dom</code>和<code>react-router-native</code></h2><h3 id="react-router"><a href="#react-router" class="headerlink" title="react-router"></a><code>react-router</code></h3><p>提供了一些router的核心api,包括<code>Router</code>,<code>Route</code>,<code>Switch</code>等，但是它没有提供dom操作进行跳转的api,<strong>服务器端渲染</strong>正好可以。</p>
-<h3 id="react-router-dom"><a href="#react-router-dom" class="headerlink" title="react-router-dom"></a><code>react-router-dom</code></h3><p>基于<code>react-router</code>，加入了在浏览器运行环境下的一些功能，我们可以通过dom的事件控制路由。例如<code>Link</code>组件，会渲染一个<code>a</code>标签；<code>BrowserRouter</code>和<code>HahsRouter</code>组件，前者使用<code>pushState</code>和<code>popState</code>事件构建路由，后者使用<code>window.location.hash</code>和<code>hashchange</code>事件构建路由。</p>
-<h3 id="react-router-native"><a href="#react-router-native" class="headerlink" title="react-router-native"></a><code>react-router-native</code></h3><p>基于<code>react-router</code>,类似<code>react-router-dom</code>,加入了<code>react-native</code>运行环境下的一些功能。</p>
-<h3 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h3><p><code>react-router-dom</code>依赖<code>react-router</code>，所以我们使用npm安装以来的时候，只需要安装相应环境下的库即可，不用再显式安装<code>react-router</code>。基于浏览器环境下的开发，只需要安装<code>raect-router-dom</code>;基于<code>react-native</code>环境的开发，只需要安装<code>react-router-native</code>。<code>npm</code>会自动解析<code>react-router-dom</code>包中<code>package.json</code>的依赖并安装。</p>
-<h2 id="V4与之前版本路由跳转的区别"><a href="#V4与之前版本路由跳转的区别" class="headerlink" title="V4与之前版本路由跳转的区别"></a>V4与之前版本路由跳转的区别</h2><h3 id="react-router-v4使用history控制路由跳转"><a href="#react-router-v4使用history控制路由跳转" class="headerlink" title="react-router v4使用history控制路由跳转"></a><code>react-router v4使用history控制路由跳转</code></h3><p>在使用<code>react-router v3</code>时候，跳转路由如下：</p>
-<ul>
-<li>从<code>react-router</code>导出<code>browserHistory</code>。</li>
-<li>使用<code>browserHistory.push()</code>等操作路由跳转</li>
-</ul>
-<p>但是在<code>react-router v4</code>中，不提供<code>browserHistory</code>等导出</p>
-<h4 id="推荐使用withRouter"><a href="#推荐使用withRouter" class="headerlink" title="推荐使用withRouter"></a>推荐使用<code>withRouter</code></h4><p><code>withRouter</code>高阶组件，提供了<code>history</code>使用</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">import React from &quot;react&quot;;</span><br><span class="line">import &#123;withRouter&#125; from &quot;react-router-dom&quot;;</span><br><span class="line"></span><br><span class="line">class MyComponent extends React.Component &#123;</span><br><span class="line">    ...</span><br><span class="line">    myFunction()&#123;</span><br><span class="line">        this.props.history.push(&quot;&#x2F;some&#x2F;path&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line">export default withRouter(MyComponent)</span><br></pre></td></tr></table></figure>
-
-<h2 id="改版后的react-router-dom路由，需要理解三个概念Router、Route和Link。"><a href="#改版后的react-router-dom路由，需要理解三个概念Router、Route和Link。" class="headerlink" title="改版后的react-router-dom路由，需要理解三个概念Router、Route和Link。"></a>改版后的<code>react-router-dom</code>路由，需要理解三个概念<code>Router</code>、<code>Route</code>和<code>Link</code>。</h2><h3 id="lt-Router-gt"><a href="#lt-Router-gt" class="headerlink" title="&lt;Router&gt;"></a><code>&lt;Router&gt;</code></h3><p><code>&lt;Router&gt;</code>是所有路由组件共用的底层接口，一般我们的应用不会使用这个接口，而是使用高级的路由：</p>
-<ul>
-<li><code>&lt;BrowserRouter&gt;</code>:使用HTML5提供的historyAPI来保持UI和URL的同步；</li>
-<li><code>&lt;HashRouter&gt;</code>:使用URL的hash(例如：<code>window.location.hash</code>)来保持UI和URL同步</li>
-<li><code>&lt;MemoryRouter&gt;</code>：能在内存保存你“URL”的历史记录（并没有对地址栏读写）;</li>
-<li><code>&lt;NativeRouter&gt;</code>：为使用<code>React Native</code>提供路由支持</li>
-<li><code>&lt;StaticRouter&gt;</code>: 从不会改变地址</li>
-</ul>
-<h3 id="lt-Link-gt"><a href="#lt-Link-gt" class="headerlink" title="&lt;Link&gt;"></a><code>&lt;Link&gt;</code></h3><p>Link是react路由中的点击切换到哪一个组件的链接，（这里只素衣不说是页面，而是说组件，因为切换到另一个界面只是展示效果，react的本质还是一个单页面应用-single page application）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">e.g.:</span><br><span class="line">import &#123; BrowserRouter as Router, Link&#125; from &quot;react-router-dom&quot;;</span><br><span class="line">class Main extends Component&#123;</span><br><span class="line">    render()&#123;</span><br><span class="line">        return(</span><br><span class="line">        &lt;Router&gt;</span><br><span class="line">            &lt;div&gt;</span><br><span class="line">                &lt;ul&gt;</span><br><span class="line">                    &lt;li&gt;&lt;link to&#x3D;&#39;&#x2F;&#39;&gt;首页&lt;&#x2F;Link&gt;&lt;&#x2F;li&gt;</span><br><span class="line">                    &lt;li&gt;&lt;link to&#x3D;&#39;&#x2F;other&#39;&gt;其他页&lt;&#x2F;Link&gt;&lt;&#x2F;li&gt;</span><br><span class="line">                &lt;&#x2F;ul&gt;</span><br><span class="line">            &lt;&#x2F;div&gt;</span><br><span class="line">        &lt;&#x2F;Router&gt;</span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>需要说明的是：</br><br><code>&lt;Router&gt;</code>下面只能包含一个盒子标签，类似这里的div</br><br><code>&lt;Link&gt;</code>代表一个链接，在html界面中会解析成a标签。作为一个链接，必须有一个to属性，代表链接地址。这个链接地址是一个相对路径。</p>
-<h3 id="lt-Route-gt"><a href="#lt-Route-gt" class="headerlink" title="&lt;Route&gt;"></a><code>&lt;Route&gt;</code></h3><ul>
-<li><code>Route</code>代表你的路由界面，<code>path</code>代表路径，<code>component</code>代表路径对应的界面。</li>
-<li>在其<code>path</code>属性与某个<code>location</code>匹配时呈现一些UI</li>
-<li>e.g.<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;Route path&#x3D;&#39;&#x2F;roster&#39;&gt;</span><br><span class="line">&#x2F;&#x2F;when the pathname is &#39;&#x2F;&#39;,the path dose not match</span><br><span class="line">&#x2F;&#x2F;when the pathname is &#39;&#x2F;roster&#39; or &#39;&#x2F;roster&#x2F;2&#39;,the path matches</span><br><span class="line">&#x2F;&#x2F;If you only want to match &#39;&#x2F;roster&#39;,then you need to use</span><br><span class="line">&#x2F;&#x2F;the &quot;exact&quot; prop.The following will match &#39;&#x2F;roster&#39;,but not</span><br><span class="line">&#x2F;&#x2F;&#39;&#x2F;roster&#x2F;2&#39;</span><br><span class="line"></span><br><span class="line">&lt;Route exact path&#x3D;&quot;&#x2F;roster&quot;&gt;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h4 id="lt-Route-gt-将会渲染什么"><a href="#lt-Route-gt-将会渲染什么" class="headerlink" title="&lt;Route&gt;将会渲染什么"></a><code>&lt;Route&gt;</code>将会渲染什么</h4><p><a href="https://juejin.im/post/5a7e9ee7f265da4e7832949c#heading-12">链接</a></br><br>Routes可以接受三种props来决定路径匹配时渲染的元素，只能给<code>&lt;Route&gt;</code>元素提供一种来定义要渲染的内容。</p>
-<ul>
-<li><code>&lt;component&gt;</code></br><br>一个React组件，当一个带有<code>component</code>prop的路由匹配的时候，路由将会返回prop提供的component类型的组件</li>
-<li><code>render</code></br><br>一个返回React元素的方法，与<code>Component</code>类似，也是当路径匹配的时候会被调用。写成内联形式渲染和传递参数的时候非常方便。</li>
-<li><code>children</code></br><br>一个返回React元素的方法。与前两种不同的是，这种方法总是会被渲染，无论路由与当前的路径是否匹配。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;Route path&#x3D;&quot;&#x2F;page&quot; component&#x3D;&#123;Page&#125;&#x2F;&gt;</span><br><span class="line"></span><br><span class="line">const extraProps &#x3D; &#123;color:&#39;red&#39;&#125;</span><br><span class="line">&lt;Route path&#x3D;&quot;&#x2F;page&quot; render&#x3D;&#123;(props)&#x3D;&gt;&#123;</span><br><span class="line">    &lt;Page &#123;...props&#125; data&#x3D;&#123;extraProps&#125;&#x2F;&gt;</span><br><span class="line">&#125;&#125;</span><br><span class="line">&#x2F;&gt;</span><br><span class="line"></span><br><span class="line">&lt;Route path&#x3D;&quot;&#x2F;page&quot; children&#x3D;&#123;(props)&#x3D;&gt;&#123;</span><br><span class="line">    props.match</span><br><span class="line">    ?&lt;Page &#123;...props&#125;&#x2F;&gt;</span><br><span class="line">    :&lt;EmptyPage &#123;...props&#125;&#x2F;&gt;</span><br><span class="line">&#125;&#125;&#x2F;&gt;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h3 id="路由传参"><a href="#路由传参" class="headerlink" title="路由传参"></a>路由传参</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;a&#x2F;1 ---this.props.match.params.id</span><br><span class="line">&#x2F;a?id&#x3D;1---this.props.location.query.id&#96;</span><br></pre></td></tr></table></figure>
-
-<h3 id="React-Router-V4设计思路"><a href="#React-Router-V4设计思路" class="headerlink" title="React Router V4设计思路"></a>React Router V4设计思路</h3><p><a href="https://juejin.im/post/5986d1456fb9a03c3f405bd2">链接</a></br><br>在V4中，路由是动态，需要忘记之前使用静态路由的思维方式，把路由当做普通组件，动态路由的优点，可以任意时间、任意地点自由添加新的Route。</p>
-<p>e.g.</br></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;BrowserRoute&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">        &lt;Route path&#x3D;&#39;&#x2F;&#39; component&#x3D;&#123;App&#125;&#x2F;&gt;</span><br><span class="line">        &lt;Route path&#x3D;&#123;&#39;&#x2F;about&#39;&#125; component&#x3D;&#123;About&#125;&#x2F;&gt;</span><br><span class="line">        &lt;Route path&#x3D;&#123;&#39;&#x2F;contact&#39;&#125; component&#x3D;&#123;Contact&#125;&#x2F;&gt;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;BrowserRoute&gt;</span><br><span class="line"></span><br><span class="line">const About &#x3D; (props) &#x3D;&gt;&#123;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">        &lt;Route path&#x3D;&#123;&#96;$&#123;props.match.url&#x2F;a&#125;&#96; component&#x3D;&#123;AboutA&#125;&#125;&#x2F;&gt;</span><br><span class="line">        &lt;Route </span><br><span class="line">            path&#x3D;&#123;&#96;$&#123;props.match.url&#125;&#x2F;b&#96; component&#x3D;&#123;AboutB&#125;&#125;</span><br><span class="line">        &#x2F;&gt;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F;动态在About组件内定义两个新的路由</span><br><span class="line">&#x2F;&#x2F;当访问&#x2F;about&#x2F;a时，组件AboutA会被作为About的子组件渲染，</span><br><span class="line">&#x2F;&#x2F;当访问&#x2F;about&#x2F;b时，组件AboutB会作为About的子组件渲染。</span><br></pre></td></tr></table></figure>
-
-
-<p>###<br><a href="https://github.com/mrdulin/blog/issues/42">参考链接（1）</a></br><br><a href="https://www.kancloud.cn/chandler/react_handbook/1271261">参考链接（2）</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1347,7 +1311,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">30</span>
+          <span class="site-state-item-count">31</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
